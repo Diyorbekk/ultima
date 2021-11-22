@@ -34,7 +34,7 @@ const App = ({i18n}) => {
     }, [i18n, language]);
 
     return (
-        <div className='d-flex vh-100'>
+        <div className="body-main">
             <Routes/>
             <ToastContainer autoClose={3000}/>
         </div>

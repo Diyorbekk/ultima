@@ -1,10 +1,18 @@
 {
   "side_bar_admin": {
     "Title": "Main",
-    "Tenders": "Tenders",
+    "Tenders": "Exit",
     "ContrDogs": "Сontracts",
     "News": "News",
     "Stat": "Statistics",
     "Academy": "Academy"
+  },
+  "login": {
+    "email": "Enter your email",
+    "enter": "Sign In",
+    "out": "You are logged out",
+    "entered": "Entered the system",
+    "error": "An error occurred",
+    "error-login": "Login or password is incorrect"
   }
 }

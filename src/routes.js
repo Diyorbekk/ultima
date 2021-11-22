@@ -13,10 +13,12 @@ const Login = lazy(() => import('./pages/Login'));
 
 //Admin pages
 const AdminMain = lazy(() => import('./pages/Admin'));
+const AdminSliderAdd = lazy(() => import('./pages/Admin/AdminMain'));
 
 
 const adminRoutes = [
     {path: '/admin', exact: true, component: <AdminMain/>},
+    {path: '/admin/slider-add', exact: true, component: <AdminSliderAdd/>},
 ];
 
 
@@ -42,45 +44,49 @@ const Routes = () => {
             }
 
 
-            <div className={"flex-fill flex-grow-1 d-flex"}>
-                <Suspense fallback={<GearSpin isSpinning skipBg style={{height: '100%'}}/>}>
-                    <>
-                        <Switch>
-                            <Route exact path="/">
-                                <Redirect to={`/${redirectByRole(get(auth, 'data.registered'))}`}/>
-                            </Route>
+            <div className={"flex-fill flex-grow-1"}>
+            <Suspense fallback={<GearSpin isSpinning skipBg style={{height: '100vh'}}/>}>
+                <>
+                    <Switch>
+                        <Route exact path="/">
+                            <Redirect to={`/${redirectByRole(get(auth, 'data.registered'))}`}/>
+                        </Route>
+                        <Route exact path="/login" component={Login}/>
 
-                            <Route exact path="/login" component={Login}/>
-                            {
-                                adminRoutes.map((route, key) => (
-                                    <Route
-                                        key={key}
-                                        path={route.path}
-                                        exact={route.exact}
-                                        render={() => {
-                                            if (auth.isAuthenticated) {
-                                                return (
-                                                    <>
+                        {
+                            adminRoutes.map((route, key) => (
+                                <Route
+                                    key={key}
+                                    path={route.path}
+                                    exact={route.exact}
+                                    render={() => {
+                                        if (auth.isAuthenticated) {
+                                            return (
+                                                <>
+                                                    <div className={"flex-fill flex-grow-1 d-flex"}>
                                                         <Sidebar/>
                                                         <div
-                                                            className={"wrapper-block pt-80 pb-50 w-100 overflowY-auto vh-100 px-lg-4 px-3"}>
+                                                            className={"wrapper-block pt-100 pb-50 w-100 overflowY-auto vh-100 px-lg-4 px-3"}>
                                                             <div className={"device-wrapper"}>
                                                                 {route.component}
                                                             </div>
                                                         </div>
-                                                    </>
-                                                )
-                                            } else {
-                                                return <Redirect to={'/login'}/>
-                                            }
-                                        }}
-                                    />
-                                ))
-                            }
-                            <Redirect from="*" to="/login"/>
-                        </Switch>
-                    </>
-                </Suspense>
+                                                    </div>
+                                                </>
+                                            )
+                                        } else {
+                                            return <Redirect to={'/login'}/>
+                                        }
+                                    }}
+                                />
+                            ))
+                        }
+
+
+                        <Redirect from="*" to="/login"/>
+                    </Switch>
+                </>
+            </Suspense>
             </div>
         </Router>
     )

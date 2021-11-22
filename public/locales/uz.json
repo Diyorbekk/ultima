@@ -1,11 +1,19 @@
 {
   "side_bar_admin": {
     "Title": "Bosh sahifa",
-    "Tenders": "Tender",
+    "Login": "Chiqish",
     "ContrDogs": "Shartnomalar",
     "News": "Yangiliklar",
     "Stat": "Statistika",
     "Faq": "F.A.Q.",
     "Academy": "Akademiya"
+  },
+  "login": {
+    "email": "Elektron pochtangizni kiriting",
+    "enter": "Tizimga kirish",
+    "out": "Siz tizimdan chiqdingiz",
+    "entered": "Tizimga kirdi",
+    "error": "Xatolik yuz berdi",
+    "error-login": "Login yoki parol noto'g'ri"
   }
 }
