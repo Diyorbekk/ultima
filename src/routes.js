@@ -36,14 +36,6 @@ const Routes = () => {
 
     return (
         <Router>
-
-            {
-                auth.isAuthenticated
-                    ? < Header/>
-                    : null
-            }
-
-
             <div className={"flex-fill flex-grow-1"}>
             <Suspense fallback={<GearSpin isSpinning skipBg style={{height: '100vh'}}/>}>
                 <>
@@ -63,6 +55,7 @@ const Routes = () => {
                                         if (auth.isAuthenticated) {
                                             return (
                                                 <>
+                                                    < Header/>
                                                     <div className={"flex-fill flex-grow-1 d-flex"}>
                                                         <Sidebar/>
                                                         <div

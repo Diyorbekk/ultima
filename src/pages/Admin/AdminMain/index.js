@@ -1,12 +1,13 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
 import {useDispatch} from "react-redux";
-import { useHistory } from 'react-router-dom';
-import Actions from 'redux/actions';
+import {useHistory} from 'react-router-dom';
+import Actions from 'schema/actions';
 import MyForm from 'components/MyForm';
 import Spinner from 'components/AntSpin';
 import FormContent from '../FormContent';
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify';
+import {serialize} from "object-to-formdata";
 
 const AdminMain = () => {
     const {t} = useTranslation();
@@ -17,7 +18,7 @@ const AdminMain = () => {
         <>
             <MyForm
                 className="pt-4"
-                sendAsFormData
+                t={t}
                 fields={[
                     {
                         name: 'lang',
@@ -68,14 +69,27 @@ const AdminMain = () => {
                         required: true,
                     },
                 ]}
-                onSubmit={({ values, setSubmitting, resetForm})=>{
-
-                    dispatch(Actions.CREATE_NEWS.request({
+                onSubmit={({values, setSubmitting, resetForm}) => {
+                    values = {
+                        "data": {
+                            "title_uz": values.title_uz,
+                            "title_ru": values.title_ru,
+                            "title_en": values.title_en,
+                            "description_uz": values.description_uz,
+                            "description_ru": values.description_ru,
+                            "description_en": values.description_en,
+                            "content_uz": values.content_uz,
+                            "content_ru": values.content_ru,
+                            "content_en": values.content_en,
+                        }
+                    };
+                    dispatch(Actions.CREATE.request({
                         url: '/posts',
-                        params: {},
-                        values,
+                        name: 'addNewUser',
+                        values: serialize(values),
                         cb: {
                             success: () => {
+                                toast.success("Qo'shildi");
                                 resetForm();
                                 history.push('/cabinet/news');
                             },
@@ -89,7 +103,7 @@ const AdminMain = () => {
                     }))
                 }}
             >
-                {({ values, setFieldValue, errors, touched, isSubmitting }) => (
+                {({values, setFieldValue, errors, touched, isSubmitting}) => (
                     <Spinner isSpinning={isSubmitting}>
                         <FormContent {...{values, setFieldValue, errors, touched, isSubmitting, history, t}}/>
                     </Spinner>

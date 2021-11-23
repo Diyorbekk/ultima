@@ -27,7 +27,6 @@ const Create = () => {
                     <div className="added-tender-box-body bg-white shadow rounded px-lg-5 py-lg-3 py-3 px-3">
                         <MyForm
                           className="pt-4"
-                          sendAsFormData
                           fields={[
                             {
                               name: 'lang',

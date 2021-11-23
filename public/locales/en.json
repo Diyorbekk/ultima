@@ -8,6 +8,7 @@
     "Academy": "Academy"
   },
   "login": {
+    "title": "Sign in to Dashboard",
     "email": "Enter your email",
     "enter": "Sign In",
     "out": "You are logged out",

@@ -17,7 +17,6 @@ const Login = () => {
     const dispatch = useDispatch();
 
     const {system: {language}} = useSelector(state => state);
-    console.log(language)
 
     const handleLangChange = evt => {
         const lang = evt.target.value;
@@ -40,7 +39,7 @@ const Login = () => {
                             <option value={"en"}>ENG</option>
                         </select>
                         <img src={Logo} alt="Shaffof Qurilish"/>
-                        <p className="login-right_block__title">Sign in to Dashboard</p>
+                        <p className="login-right_block__title">{t("login.title")}</p>
                         <MyForm
                             className="w-100"
                             t={t}
