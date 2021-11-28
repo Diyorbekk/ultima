@@ -20,6 +20,8 @@
     "title": "Create title",
     "description": "Create description",
     "images": "Create images",
-    "clear": "Clear"
+    "clear": "Clear",
+    "save": "Save",
+    "change": "Change"
   }
 }

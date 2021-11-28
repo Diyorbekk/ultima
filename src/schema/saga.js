@@ -50,7 +50,7 @@ function* LoadOne({ payload }) {
     dataKey,
   } = payload;
   try{
-    const { data: { data } } = yield call(api.request.get, api.queryBuilder(url, {...params}));
+    const { data: { data } } = yield call(api.requestFireBase.get, api.queryBuilderLogin(url, {...params}));
 
     yield put(Actions.LoadOne.success({
       name,

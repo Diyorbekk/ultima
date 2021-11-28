@@ -21,7 +21,16 @@
     "title": "Sarlavha yaratish",
     "description": "Tavsif yaratish",
     "images": "Rasm yaratish",
-    "clear": "Tozalash"
-
+    "clear": "Tozalash",
+    "save": "Saqlash",
+    "change": "O'zgartirish"
+  },
+  "errors": {
+    "title": "sarlavhasi bo'sh",
+    "description": "tavsif bo'sh"
+  },
+  "success": {
+    "title": "saralavha",
+    "description": "tavsif"
   }
 }

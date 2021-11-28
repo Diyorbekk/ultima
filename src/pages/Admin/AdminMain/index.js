@@ -13,6 +13,17 @@ const AdminMain = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
+    function join(t, a, s) {
+        function format(m) {
+            let f = new Intl.DateTimeFormat('en', m);
+            return f.format(t);
+        }
+
+        return a.map(format).join(s);
+    }
+
+    let a = [{day: 'numeric'}, {month: 'short'}, {year: 'numeric'}];
+    let s = join(new Date, a, '-');
     return (
         <>
             <MyForm
@@ -31,10 +42,12 @@ const AdminMain = () => {
                     {
                         name: 'title_ru',
                         value: '',
+                        required: true,
                     },
                     {
                         name: 'title_en',
                         value: '',
+                        required: true,
                     },
                     {
                         name: 'description_uz',
@@ -44,10 +57,16 @@ const AdminMain = () => {
                     {
                         name: 'description_ru',
                         value: '',
+                        required: true,
                     },
                     {
                         name: 'description_en',
                         value: '',
+                        required: true,
+                    },
+                    {
+                        name: 'time',
+                        value: s,
                     },
                     {
                         name: 'photo',
@@ -63,6 +82,7 @@ const AdminMain = () => {
                         "description_uz": values.description_uz,
                         "description_ru": values.description_ru,
                         "description_en": values.description_en,
+                        "time": values.time,
                         "photo": values.photo,
 
                     };
@@ -87,7 +107,16 @@ const AdminMain = () => {
             >
                 {({values, setFieldValue, resetForm, errors, touched, isSubmitting}) => (
                     <Spinner isSpinning={isSubmitting}>
-                        <FormContent {...{values, setFieldValue, resetForm, errors, touched, isSubmitting, history, t}}/>
+                        <FormContent {...{
+                            values,
+                            setFieldValue,
+                            resetForm,
+                            errors,
+                            touched,
+                            isSubmitting,
+                            history,
+                            t
+                        }}/>
                     </Spinner>
                 )}
             </MyForm>

@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ErrorMessage, Field} from "formik";
-import MyEditor from 'components/SunEditor';
 import FileUploader from 'components/FileUploader';
 import storageFirebase from 'firebaseGet/storageFirebase'
 
@@ -19,10 +18,9 @@ const langs = [
     },
 ];
 
-const FormContent = ({values, setFieldValue, resetForm, errors, touched, isSubmitting, isUpdate = false, history, t}) => {
+const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUpdate = false, history, t}) => {
     const [progress, setProgress] = useState(0)
     const [errorImg, setErrorImg] = useState(null)
-    const [url, setUrl] = useState(null)
 
 
     const imageUpload = () => {
@@ -74,16 +72,18 @@ const FormContent = ({values, setFieldValue, resetForm, errors, touched, isSubmi
                     .child(filenames)
                     .getDownloadURL()
                     .then(url => {
-                        setUrl(url)
                         setFieldValue("photo", url)
                     });
             }
         );
     }
 
-    const clearForm = () => {
-        resetForm()
-    }
+    useEffect(()=>{
+        if (isSubmitting){
+            setProgress(0)
+        }
+
+    },[isSubmitting])
 
     return <>
         <div className="added-tender-box-form-box form-group">
@@ -157,21 +157,57 @@ const FormContent = ({values, setFieldValue, resetForm, errors, touched, isSubmi
                 </div>
 
             </div>
+
+            <div className="row mt-4">
+                <div className="col-md-6">
+                    {
+                        values.title_uz === ''
+                            ? <p className="text-danger">UZ {t("errors.title")}</p>
+                            : <p className="text-success">UZ {t("success.title")} <b>{values.title_uz}</b></p>
+                    }
+                    {
+                        values.title_ru === ''
+                            ? <p className="text-danger">RU {t("errors.title")}</p>
+                            : <p className="text-success">RU {t("success.title")} <b>{values.title_ru}</b></p>
+                    }
+                    {
+                        values.title_en === ''
+                            ? <p className="text-danger">EN {t("errors.title")}</p>
+                            : <p className="text-success">EN {t("success.title")} <b>{values.title_en}</b></p>
+                    }
+                </div>
+
+                <div className="col-md-6">
+                    {
+                        values.description_uz === ''
+                            ? <p className="text-danger">UZ {t("errors.description")}</p>
+                            : <p className="text-success">UZ {t("success.description")} <b>{values.description_uz}</b></p>
+                    }
+                    {
+                        values.description_ru === ''
+                            ? <p className="text-danger">RU {t("errors.description")}</p>
+                            : <p className="text-success">RU {t("success.description")} <b>{values.description_ru}</b></p>
+                    }
+                    {
+                        values.description_en === ''
+                            ? <p className="text-danger">EN {t("errors.description")}</p>
+                            : <p className="text-success">EN {t("success.description")} <b>{values.description_en}</b></p>
+                    }
+                </div>
+
+                <div className="col-12 my-3 text-center">
+                    {
+                        progress === 100
+                        ? <img className="w-100" src={values.photo} alt={values.photo}/>
+                        : null
+                    }
+                </div>
+            </div>
+
         </div>
 
         <div
             className="d-flex added-tender-box-form-box align-items-center justify-content-end my-4 col-12 flex-wrap">
-            {
-                values + `title_${values.lang}` === ""
-                    ? <button
-                        className='btn btn-warning text-white focus-none mr-3'
-                        onClick={clearForm}
-                    >
-                        {t('create.clear')}
-                    </button>
-                    : null
-            }
-
             <button
                 type={'submit'}
                 className="btn btn-primary px-md-4 my-lg-2 col-auto"
@@ -180,7 +216,7 @@ const FormContent = ({values, setFieldValue, resetForm, errors, touched, isSubmi
                 {
                     isSubmitting
                         ? <span className="spinner-border spinner-border-sm" role="status"/>
-                        : isUpdate ? t('cabinetNewsListTexts.text4') : t('cabinetNewsListTexts.text15')
+                        : isUpdate ? t('create.change') : t('create.save')
                 }
             </button>
         </div>
