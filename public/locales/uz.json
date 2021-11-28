@@ -16,5 +16,12 @@
     "entered": "Tizimga kirdi",
     "error": "Xatolik yuz berdi",
     "error-login": "Login yoki parol noto'g'ri"
+  },
+  "create": {
+    "title": "Sarlavha yaratish",
+    "description": "Tavsif yaratish",
+    "images": "Rasm yaratish",
+    "clear": "Tozalash"
+
   }
 }

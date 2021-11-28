@@ -19,10 +19,11 @@ const langs = [
     },
 ];
 
-const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUpdate = false, history, t}) => {
+const FormContent = ({values, setFieldValue, resetForm, errors, touched, isSubmitting, isUpdate = false, history, t}) => {
     const [progress, setProgress] = useState(0)
     const [errorImg, setErrorImg] = useState(null)
     const [url, setUrl] = useState(null)
+
 
     const imageUpload = () => {
 
@@ -74,11 +75,14 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
                     .getDownloadURL()
                     .then(url => {
                         setUrl(url)
-                        setFieldValue(url)
-                        console.log(url)
+                        setFieldValue("photo", url)
                     });
             }
         );
+    }
+
+    const clearForm = () => {
+        resetForm()
     }
 
     return <>
@@ -98,7 +102,7 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
 
         <div className="form-group">
             <label className={'d-block font-size-14 color-28366D font-weight-500 text-left'}
-                   htmlFor="title">{t('cabinetNewsListTexts.text1')}</label>
+                   htmlFor="title">{t('create.title')}</label>
             <Field
                 className={`form-control w-100 ${errors[`title_${values.lang}`] && touched[`title_${values.lang}`] ? 'is-invalid' : (touched[`title_${values.lang}`] && !errors[`title_${values.lang}`]) ? 'is-valid' : ''}`}
                 name={`title_${values.lang}`}
@@ -106,7 +110,7 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
         </div>
         <div className="form-group">
             <label className={'d-block font-size-14 color-28366D font-weight-500 text-left'}
-                   htmlFor="description">{t('cabinetNewsListTexts.text20')}</label>
+                   htmlFor="description">{t('create.description')}</label>
             <Field
                 className={`description-box resize-none form-control w-100 ${errors[`description_${values.lang}`] && touched[`description_${values.lang}`] ? 'is-invalid' : (touched[`description_${values.lang}`] && !errors[`description_${values.lang}`]) ? 'is-valid' : ''}`}
                 as={'textarea'}
@@ -114,45 +118,10 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
             />
         </div>
 
-        <div className="form-group">
-            <label className={'d-block font-size-14 color-28366D font-weight-500 text-left'}
-                   htmlFor="suneditor">{t('cabinetNewsListTexts.text19')}</label>
-
-            {
-                values.lang === 'uz'
-                    ? <Field
-                        name={`content_uz`}
-                        component={MyEditor}
-                        className={'form-control'}
-                    />
-                    : null
-            }
-            {
-                values.lang === 'ru'
-                    ? <Field
-                        name={`content_ru`}
-                        component={MyEditor}
-                        className={'form-control'}
-                    />
-                    : null
-            }
-            {
-                values.lang === 'en'
-                    ? <Field
-                        name={`content_en`}
-                        component={MyEditor}
-                        className={'form-control'}
-                    />
-                    : null
-            }
-            <ErrorMessage
-                name={`content_${values.lang}`}
-                render={err => <span className={'text-danger font-size-12'}>{err}</span>}
-            />
-        </div>
-
         <div className={'form-group'}>
-            <label htmlFor="photo">{t('cabinetNewsListTexts.text3')}</label>
+            <label
+                className={'d-block font-size-14 color-28366D font-weight-500 text-left'}
+                htmlFor="photo">{t('create.images')}</label>
             <Field
                 id={'photo'}
                 name={'photo'}
@@ -160,7 +129,7 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
             />
             <ErrorMessage
                 name={'photo'}
-                render={err => <span className={'text-danger font-size-12'}>{err}</span>}
+                render={err => <span className={'text-danger d-block mb-2 font-size-12'}>{err}</span>}
             />
 
             {
@@ -172,6 +141,7 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
             <button
                 className="btn btn-primary focus-none"
                 type={"button"}
+                disabled={!values.photo}
                 onClick={imageUpload}
             >
                 Image upload
@@ -191,11 +161,17 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
 
         <div
             className="d-flex added-tender-box-form-box align-items-center justify-content-end my-4 col-12 flex-wrap">
-            <button
-                className={'btn white-button focus-none mr-3'}
-                onClick={() => history.goBack()}
-            >Bekor qilish
-            </button>
+            {
+                values + `title_${values.lang}` === ""
+                    ? <button
+                        className='btn btn-warning text-white focus-none mr-3'
+                        onClick={clearForm}
+                    >
+                        {t('create.clear')}
+                    </button>
+                    : null
+            }
+
             <button
                 type={'submit'}
                 className="btn btn-primary px-md-4 my-lg-2 col-auto"

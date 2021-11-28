@@ -81,7 +81,7 @@ function* Create({ payload }) {
     cb
   } = payload;
   try{
-    const { data: { data  } } = yield call(api.request.post, api.queryBuilder(url, {...params}), values);
+    const { data: { data  } } = yield call(api.requestFireBase.post, api.queryBuilderLogin(url, {...params}), values);
     yield put(Actions.CREATE.success({
       name,
       data,

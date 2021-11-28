@@ -2,11 +2,14 @@ import React from 'react';
 import {useTranslation} from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
-import Actions from 'redux/actions';
 import MyForm from 'components/MyForm';
+import Actions from 'redux/actions';
 import Spinner from 'components/AntSpin';
 import FormContent from '../FormContent';
 import { toast } from 'react-toastify';
+import {Field} from "formik";
+
+const createErrorClass = (errors, touched, name) => `${errors[name] && touched[name] ? 'is-invalid' : (touched[name] && !errors[name]) ? 'is-valid' : ''}`;
 
 const Create = () => {
     const {t} = useTranslation();
@@ -29,59 +32,17 @@ const Create = () => {
                           className="pt-4"
                           fields={[
                             {
-                              name: 'lang',
-                              value: 'uz'
-                            },
-                            {
-                              name: 'title_uz',
-                              value: '',
-                              required: true,
-                            },
-                            {
-                              name: 'title_ru',
-                              value: '',
-                            },
-                            {
-                              name: 'title_en',
-                              value: '',
-                            },
-                            {
-                              name: 'description_uz',
-                              value: '',
-                              required: true,
-                            },
-                            {
-                              name: 'description_ru',
-                              value: '',
-                            },
-                            {
-                              name: 'description_en',
-                              value: '',
-                            },
-                            {
-                              name: 'content_uz',
-                              value: '',
-                              required: true,
-                            },
-                            {
-                              name: 'content_ru',
-                              value: '',
-                            },
-                            {
-                              name: 'content_en',
-                              value: '',
-                            },
-                            {
-                              name: 'photo',
-                              value: null,
-                              required: true,
+                              name: 'comment',
+                              value: ''
                             },
                           ]}
                           onSubmit={({ values, setSubmitting, resetForm})=>{
-
-                            dispatch(Actions.CREATE_NEWS.request({
+                              values = {
+                                  "comment": values.comment,
+                              };
+                            dispatch(Actions.CREATE.request({
                               url: '/posts',
-                              params: {},
+                                name: 'comment',
                               values,
                               cb: {
                                 success: () => {
@@ -98,11 +59,37 @@ const Create = () => {
                             }))
                           }}
                         >
-                            {({ values, setFieldValue, errors, touched, isSubmitting }) => (
+                            {({errors, touched, isSubmitting}) => {
+                                return <>
+                                    <Field
+                                        as="textarea"
+                                        className={`form-control form-control-lg font-size-16 focus-none resize-none mb-4 ${createErrorClass(errors, touched, 'category_id')}`}
+                                        type="text"
+                                        name="comment"
+                                        placeholder="Печать"
+                                        cols="50"
+                                        rows="10"
+                                    />
+                                    <button
+                                        className="btn btn-primary focus-none text-white"
+                                        type={"submit"}
+                                        disabled={isSubmitting}
+                                    >
+                                        {
+                                            isSubmitting
+                                                ? <span className={"mr-2"}><i
+                                                    className="fal fa-spinner-third fa-spin"/></span>
+                                                : null
+                                        }
+                                        Отправить сообщение
+                                    </button>
+                                </>
+                            }}
+                            {/*{({ values, setFieldValue, errors, touched, isSubmitting }) => (
                               <Spinner isSpinning={isSubmitting}>
                                 <FormContent {...{values, setFieldValue, errors, touched, isSubmitting, history, t}}/>
                               </Spinner>
-                            )}
+                            )}*/}
                         </MyForm>
                     </div>
                 </div>

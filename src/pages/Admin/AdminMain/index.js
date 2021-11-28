@@ -7,7 +7,6 @@ import MyForm from 'components/MyForm';
 import Spinner from 'components/AntSpin';
 import FormContent from '../FormContent';
 import {toast} from 'react-toastify';
-import {serialize} from "object-to-formdata";
 
 const AdminMain = () => {
     const {t} = useTranslation();
@@ -51,19 +50,6 @@ const AdminMain = () => {
                         value: '',
                     },
                     {
-                        name: 'content_uz',
-                        value: '',
-                        required: true,
-                    },
-                    {
-                        name: 'content_ru',
-                        value: '',
-                    },
-                    {
-                        name: 'content_en',
-                        value: '',
-                    },
-                    {
                         name: 'photo',
                         value: null,
                         required: true,
@@ -71,27 +57,23 @@ const AdminMain = () => {
                 ]}
                 onSubmit={({values, setSubmitting, resetForm}) => {
                     values = {
-                        "data": {
-                            "title_uz": values.title_uz,
-                            "title_ru": values.title_ru,
-                            "title_en": values.title_en,
-                            "description_uz": values.description_uz,
-                            "description_ru": values.description_ru,
-                            "description_en": values.description_en,
-                            "content_uz": values.content_uz,
-                            "content_ru": values.content_ru,
-                            "content_en": values.content_en,
-                        }
+                        "title_uz": values.title_uz,
+                        "title_ru": values.title_ru,
+                        "title_en": values.title_en,
+                        "description_uz": values.description_uz,
+                        "description_ru": values.description_ru,
+                        "description_en": values.description_en,
+                        "photo": values.photo,
+
                     };
                     dispatch(Actions.CREATE.request({
-                        url: '/posts',
+                        url: '/posts.json',
                         name: 'addNewUser',
-                        values: serialize(values),
+                        values,
                         cb: {
                             success: () => {
                                 toast.success("Qo'shildi");
                                 resetForm();
-                                history.push('/cabinet/news');
                             },
                             error: () => {
                                 toast.error("Xatolik yuz berdi");
@@ -103,9 +85,9 @@ const AdminMain = () => {
                     }))
                 }}
             >
-                {({values, setFieldValue, errors, touched, isSubmitting}) => (
+                {({values, setFieldValue, resetForm, errors, touched, isSubmitting}) => (
                     <Spinner isSpinning={isSubmitting}>
-                        <FormContent {...{values, setFieldValue, errors, touched, isSubmitting, history, t}}/>
+                        <FormContent {...{values, setFieldValue, resetForm, errors, touched, isSubmitting, history, t}}/>
                     </Spinner>
                 )}
             </MyForm>

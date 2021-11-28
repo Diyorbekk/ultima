@@ -23,6 +23,9 @@ const requestLogin = axios.create({
   baseURL: config.API_ROOT_LOGIN,
 });
 
+const requestFireBase = axios.create({
+  baseURL: config.API_ROOT,
+});
 
 // request.defaults.params = {};
 // request.defaults.params['_f'] = 'json';
@@ -118,6 +121,7 @@ const subscribe = store => {
 const defaultExport = {
   request,
   requestLogin,
+  requestFireBase,
   queryBuilder,
   queryBuilderLogin,
   subscribe
