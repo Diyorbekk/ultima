@@ -24,13 +24,15 @@
     "clear": "Tozalash",
     "save": "Saqlash",
     "change": "O'zgartirish",
+    "delete-btn": "Удалить",
+    "update-btn": "Обновлять",
     "delete": "Yo'q qilmoqchimisiz",
     "ask-yes": "Ha",
     "ask-no": "Yo'q"
   },
   "errors": {
-    "title": "sarlavhasi bo'sh",
-    "description": "tavsif bo'sh"
+    "title": "Sarlavhasi bo'sh",
+    "description": "Tavsif bo'sh"
   },
   "success": {
     "title": "saralavha",

@@ -37,7 +37,7 @@ const Routes = () => {
     return (
         <Router>
             <div className={"flex-fill flex-grow-1"}>
-            <Suspense fallback={<GearSpin isSpinning skipBg style={{height: '100vh'}}/>}>
+            <Suspense fallback={<GearSpin isSpinning skipBg style={{height: '100vh', width: "100%"}}/>}>
                 <>
                     <Switch>
                         <Route exact path="/">

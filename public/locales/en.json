@@ -14,17 +14,28 @@
     "out": "You are logged out",
     "entered": "Entered the system",
     "error": "An error occurred",
-    "error-login": "Login or password is incorrect",
-    "delete": "Do you want to delete",
-    "ask-yes": "Yes",
-    "ask-no": "No"
+    "error-login": "Login or password is incorrect"
+
   },
   "create": {
     "title": "Create title",
     "description": "Create description",
     "images": "Create images",
     "clear": "Clear",
+    "delete-btn": "Delete",
+    "update-btn": "Update",
+    "delete": "Do you want to delete",
+    "ask-yes": "Yes",
+    "ask-no": "No",
     "save": "Save",
     "change": "Change"
+  },
+  "errors": {
+    "title": "The title is empty",
+    "description": "The description is empty"
+  },
+  "success": {
+    "title": "Title",
+    "description": "Description"
   }
 }
