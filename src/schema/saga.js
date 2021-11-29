@@ -44,13 +44,12 @@ function* LoadOne({ payload }) {
   const {
     url,
     name,
-    params,
     cb,
     asData,
     dataKey,
   } = payload;
   try{
-    const { data: { data } } = yield call(api.requestFireBase.get, api.queryBuilderLogin(url, {...params}));
+    const { data } = yield call(api.requestFireBase.get, api.queryBuilderLogin(url, {}));
 
     yield put(Actions.LoadOne.success({
       name,
@@ -141,7 +140,6 @@ function* Delete({ payload }) {
     id,
     url,
     name,
-    params,
     cb={
       success: () => {},
       error: () => {},
@@ -149,7 +147,7 @@ function* Delete({ payload }) {
     }
   } = payload;
   try{
-    const { data } = yield call(api.request.delete, api.queryBuilder(url, {...params}));
+    const { data } = yield call(api.requestFireBase.delete, api.queryBuilderLogin(url, {}));
 
     yield put(Actions.DELETE.success({
       id,

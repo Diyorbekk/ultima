@@ -14,7 +14,10 @@
     "out": "You are logged out",
     "entered": "Entered the system",
     "error": "An error occurred",
-    "error-login": "Login or password is incorrect"
+    "error-login": "Login or password is incorrect",
+    "delete": "Do you want to delete",
+    "ask-yes": "Yes",
+    "ask-no": "No"
   },
   "create": {
     "title": "Create title",

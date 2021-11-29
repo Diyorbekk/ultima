@@ -23,7 +23,10 @@
     "images": "Rasm yaratish",
     "clear": "Tozalash",
     "save": "Saqlash",
-    "change": "O'zgartirish"
+    "change": "O'zgartirish",
+    "delete": "Yo'q qilmoqchimisiz",
+    "ask-yes": "Ha",
+    "ask-no": "Yo'q"
   },
   "errors": {
     "title": "sarlavhasi bo'sh",

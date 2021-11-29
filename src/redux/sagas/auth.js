@@ -14,7 +14,6 @@ function* Login(action) {
     yield call(storage.set, "token", data.idToken);
     yield put(Actions.LOGIN.success({...data}));
     yield call(cb.success, data);
-    console.log(data)
   }
   catch(err){
     yield put(Actions.LOGIN.failure(get(err,'response.data','')));
