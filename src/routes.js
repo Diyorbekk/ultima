@@ -13,12 +13,14 @@ const Login = lazy(() => import('./pages/Login'));
 
 //Admin pages
 const AdminMain = lazy(() => import('./pages/Admin'));
-const AdminSliderAdd = lazy(() => import('./pages/Admin/AdminMain'));
+const AdminSliderAdd = lazy(() => import('./pages/Admin/Slider/AdminMain'));
+const AdminSliderUpdate = lazy(() => import('./pages/Admin/Slider/Update'));
 
 
 const adminRoutes = [
     {path: '/admin', exact: true, component: <AdminMain/>},
     {path: '/admin/slider-add', exact: true, component: <AdminSliderAdd/>},
+    {path: '/admin/slider-add/update/:id', exact: true, component: <AdminSliderUpdate/>},
 ];
 
 

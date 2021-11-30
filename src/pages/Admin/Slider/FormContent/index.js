@@ -18,9 +18,10 @@ const langs = [
     },
 ];
 
-const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUpdate = false, history, t}) => {
+const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUpdate = false, t}) => {
     const [progress, setProgress] = useState(0)
     const [errorImg, setErrorImg] = useState(null)
+    const [img, setImg] = useState(false)
 
 
     const imageUpload = () => {
@@ -73,6 +74,7 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
                     .getDownloadURL()
                     .then(url => {
                         setFieldValue("photo", url)
+                        setImg(true)
                     });
             }
         );
@@ -81,6 +83,7 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
     useEffect(()=>{
         if (isSubmitting){
             setProgress(0)
+            setImg(false)
         }
 
     },[isSubmitting])
@@ -141,7 +144,7 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
             <button
                 className="btn btn-primary focus-none"
                 type={"button"}
-                disabled={!values.photo}
+                disabled={isUpdate ? true : !values.photo}
                 onClick={imageUpload}
             >
                 Image upload
@@ -211,7 +214,7 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
             <button
                 type={'submit'}
                 className="btn btn-primary px-md-4 my-lg-2 col-auto"
-                disabled={isSubmitting}
+                disabled={isUpdate ? isSubmitting : isSubmitting || !img}
             >
                 {
                     isSubmitting

@@ -108,12 +108,11 @@ function* Update({ payload }) {
     id,
     url,
     name,
-    params,
     values,
     cb
   } = payload;
   try{
-    const { data: { result  } } = yield call(api.request.put, api.queryBuilder(url, {...params}), values);
+    const { data: { result  } } = yield call(api.requestFireBase.put, api.queryBuilderLogin(url, {}), values);
     yield put(Actions.UPDATE.success({
       id,
       name,
@@ -152,6 +151,7 @@ function* Delete({ payload }) {
     yield put(Actions.DELETE.success({
       id,
       name,
+      data
     }));
 
     yield call(cb.success, id);

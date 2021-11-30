@@ -41,109 +41,125 @@ const AdminHome = () => {
 
     return (
         <>
-            <LoadOne
-                url={`/posts.json`}
-                name={'posts.json'}
-                asData
-            >
-                {({isFetched, data = {}}) => {
-                    return <>
-                        <Spin
-                            isSpinning={!isFetched || isLoading}
-                            style={{display: "contents"}}
-                        >
-                        <div className="col-12 mt-5">
-                            <div className="row">
-                                {
-                                    isFetched && Object.keys(data).length
-                                        ? Object.keys(data).map((key, index) => (
-                                            <div className="col-md-3" key={index}>
-                                                <NavLink to={`/admin/slider/${key}`}
-                                                         className="card text-decoration-none text-body">
-                                                    <img src={get(data[key], "photo")} className="card-img-top"
-                                                         alt="slider"/>
-                                                    <div className="card-body">
-                                                        <h5 className="card-title">{get(data[key], `title_${language}`)}</h5>
-                                                        <p className="card-text">{get(data[key], `description_${language}`)}</p>
-                                                    </div>
-                                                    <div className="card-footer">
-                                                        <small className="text-muted">{get(data[key], 'time')}</small>
-                                                    </div>
-                                                </NavLink>
+            <div className="col-12 mt-5">
+                <div className="row">
 
-                                                <div className="d-flex">
-                                                    <button
-                                                        className="btn btn-danger text-white w-100"
-                                                        onClick={() => setOpen([get(data[key], `title_${language}`), key, 'delete'])}>
-                                                        {t("create.delete-btn")}<i
-                                                        className="fas fa-trash font-size-22 ml-2"/>
-                                                    </button>
-                                                    <button
-                                                        className="btn btn-warning text-white w-100"
-                                                        onClick={() => setOpen([get(data[key], `title_${language}`), key, 'delete'])}>
-                                                        {t("create.update-btn")}<i
-                                                        className="fas fa-edit font-size-22 ml-2"/>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        ))
-                                        : null
-                                }
+                    {
+                        !isLoading
+                            ? <LoadOne
+                                url={`/posts.json`}
+                                name={'posts.json'}
+                                asData
+                            >
+                                {({isFetched, data = {}}) => {
+                                    return <>
+                                        <Spin
+                                            isSpinning={!isFetched}
+                                            style={{display: "contents"}}
+                                        >
 
-                                <Modal
-                                    isOpen={!!isOpen}
-                                    onClose={() => setOpen(null)}
-                                    width={900}
-                                    position={"center"}
-                                >
-                                    <div className="d-flex flex-wrap p-4 position-relative">
-                                        <div className="w-100 text-center border-bottom py-3">
+
                                             {
-                                                isOpen === null
-                                                    ? null
-                                                    : isOpen.map(item => item).indexOf('delete') > -1
-                                                    ? <h5>{t("create.delete")} <b>ID</b>: {isOpen[0]} ?</h5>
+                                                isFetched && data !== null
+                                                    ? Object.keys(data).length
+                                                    ? Object.keys(data).map((key, index) => (
+                                                        <div className="col-md-3" key={index}>
+                                                            <NavLink to={`/admin/slider/${key}`}
+                                                                     className="card text-decoration-none text-body">
+                                                                <img src={get(data[key], "photo")}
+                                                                     className="card-img-top"
+                                                                     alt="slider"/>
+                                                                <div className="card-body">
+                                                                    <h5 className="card-title">{get(data[key], `title_${language}`)}</h5>
+                                                                    <p className="card-text">{get(data[key], `description_${language}`)}</p>
+                                                                </div>
+                                                                <div className="card-footer">
+                                                                    <small
+                                                                        className="text-muted">{get(data[key], 'time')}</small>
+                                                                </div>
+                                                            </NavLink>
+
+                                                            <div className="d-flex">
+                                                                <button
+                                                                    className="btn btn-danger text-white w-100"
+                                                                    onClick={() => setOpen([get(data[key], `title_${language}`), key, 'delete'])}>
+                                                                    {t("create.delete-btn")}<i
+                                                                    className="fas fa-trash font-size-22 ml-2"/>
+                                                                </button>
+                                                                <NavLink
+                                                                    className="btn btn-warning text-white w-100"
+                                                                    to={`/admin/slider-add/update/${key}`}
+                                                                >
+                                                                    {t("create.update-btn")}<i
+                                                                    className="fas fa-edit font-size-22 ml-2"/>
+                                                                </NavLink>
+                                                            </div>
+                                                        </div>
+                                                    ))
+                                                    : null
                                                     : null
                                             }
 
-                                        </div>
 
-                                        <div
-                                            className="d-flex justify-content-between align-items-center w-100 my-3">
-                                            <button className="btn btn-warning text-white"
-                                                    onClick={() => setOpen(null)}>
-                                                {t("create.ask-no")} <i className={"fal fa-times ml-2"}/>
-                                            </button>
-                                            {
-                                                isOpen === null
-                                                    ? null
-                                                    : isOpen.map(item => item).indexOf('delete') > -1
-                                                    ? <button className="btn btn-success text-white"
-                                                              onClick={handleRemove}>
-                                                        {t("create.ask-yes")} <i className={"fal fa-check ml-2"}/>
-                                                    </button>
-                                                    : null
-                                            }
+                                        </Spin>
+                                    </>
+                                }}
 
-                                        </div>
-                                    </div>
-                                </Modal>
+                            </LoadOne>
+                            : <Spin
+                                isSpinning={true}
+                                style={{display: "contents"}}
+                            >
+                            </Spin>
+                    }
+                    <div className="col-md-3">
+                        <NavLink to={`/admin/slider-add`}
+                                 className="border rounded d-flex align-items-center justify-content-center">
+                            <img src={add} style={{width: 150}} alt="icon-add"/>
+                        </NavLink>
+                    </div>
+                </div>
+                <Modal
+                    isOpen={!!isOpen}
+                    onClose={() => setOpen(null)}
+                    width={900}
+                    position={"center"}
+                >
+                    <div className="d-flex flex-wrap p-4 position-relative">
+                        <div className="w-100 text-center border-bottom py-3">
+                            {
+                                isOpen === null
+                                    ? null
+                                    : isOpen.map(item => item).indexOf('delete') > -1
+                                    ? <h5>{t("create.delete")} <b>ID</b>: {isOpen[0]} ?</h5>
+                                    : null
+                            }
 
-
-                                <div className="col-md-3">
-                                    <NavLink to={`/admin/slider-add`}
-                                             className="border rounded d-flex align-items-center justify-content-center">
-                                        <img src={add} style={{width: 150}} alt="icon-add"/>
-                                    </NavLink>
-                                </div>
-                            </div>
                         </div>
-                        </Spin>
-                    </>
-                }}
 
-            </LoadOne>
+                        <div
+                            className="d-flex justify-content-between align-items-center w-100 my-3">
+                            <button className="btn btn-warning text-white"
+                                    onClick={() => setOpen(null)}>
+                                {t("create.ask-no")} <i className={"fal fa-times ml-2"}/>
+                            </button>
+                            {
+                                isOpen === null
+                                    ? null
+                                    : isOpen.map(item => item).indexOf('delete') > -1
+                                    ? <button className="btn btn-success text-white"
+                                              onClick={handleRemove}>
+                                        {t("create.ask-yes")} <i className={"fal fa-check ml-2"}/>
+                                    </button>
+                                    : null
+                            }
 
+                        </div>
+                    </div>
+                </Modal>
+
+
+            </div>
         </>
     );
 };

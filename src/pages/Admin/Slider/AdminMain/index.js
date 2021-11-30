@@ -88,7 +88,7 @@ const AdminMain = () => {
                     };
                     dispatch(Actions.CREATE.request({
                         url: '/posts.json',
-                        name: 'addNewUser',
+                        name: 'NewSlider',
                         values,
                         cb: {
                             success: () => {
