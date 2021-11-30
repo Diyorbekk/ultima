@@ -9,6 +9,8 @@ import {useDispatch, useSelector} from "react-redux";
 import Actions from "schema/actions";
 import {toast} from "react-toastify";
 import Spin from "../../components/AntSpin";
+import htmlParser from 'react-html-parser';
+import storageFirebase from 'firebaseGet/storageFirebase'
 
 
 const AdminHome = () => {
@@ -18,7 +20,7 @@ const AdminHome = () => {
     const [isLoading, setLoading] = useState(false);
     const {system: {language}} = useSelector(state => state);
 
-    const handleRemove = () => {
+    const handleRemove = (props) => {
         setLoading(true);
         setOpen(null);
         dispatch(Actions.DELETE.request({
@@ -26,6 +28,12 @@ const AdminHome = () => {
             name: "posts.json",
             cb: {
                 success: () => {
+                    const desertRef = storageFirebase.refFromURL(isOpen[2])
+                    desertRef.delete().then(function() {
+                        toast.success("O'chirildi");
+                    }).catch(function(error) {
+                        toast.error("Xatolik yuz berdi");
+                    });
                     toast.success("O'chirildi");
                 },
                 error: () => {
@@ -37,7 +45,6 @@ const AdminHome = () => {
             }
         }))
     };
-
 
     return (
         <>
@@ -71,7 +78,7 @@ const AdminHome = () => {
                                                                      alt="slider"/>
                                                                 <div className="card-body">
                                                                     <h5 className="card-title">{get(data[key], `title_${language}`)}</h5>
-                                                                    <p className="card-text">{get(data[key], `description_${language}`)}</p>
+                                                                    <p className="card-text">{htmlParser(get(data[key], `description_${language}`,''))}</p>
                                                                 </div>
                                                                 <div className="card-footer">
                                                                     <small
@@ -82,7 +89,7 @@ const AdminHome = () => {
                                                             <div className="d-flex">
                                                                 <button
                                                                     className="btn btn-danger text-white w-100"
-                                                                    onClick={() => setOpen([get(data[key], `title_${language}`), key, 'delete'])}>
+                                                                    onClick={() => setOpen([get(data[key], `title_${language}`), key, get(data[key], "photo") , 'delete'])}>
                                                                     {t("create.delete-btn")}<i
                                                                     className="fas fa-trash font-size-22 ml-2"/>
                                                                 </button>

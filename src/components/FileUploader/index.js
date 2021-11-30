@@ -7,7 +7,6 @@ const FileUpload = ({id, field, form: {values, setFieldValue}}) => {
 
     const handleChange = (e) => {
         setFieldValue(field.name, e.target.files[0]);
-        console.log(field.name)
         const image = e.target.files[0];
         new Compressor(image, {
             quality: 0.8,

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {ErrorMessage, Field} from "formik";
 import FileUploader from 'components/FileUploader';
+import MyEditor from 'components/SunEditor';
 import storageFirebase from 'firebaseGet/storageFirebase'
 
 const langs = [
@@ -80,13 +81,20 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
         );
     }
 
-    useEffect(()=>{
-        if (isSubmitting){
+    useEffect(() => {
+        if (isSubmitting) {
             setProgress(0)
             setImg(false)
         }
+        if (isUpdate || values.photo === null) {
+            if (typeof values.photo === "string" || typeof values.photo === "undefined") {
+                setImg(true)
+            } else {
+                setImg(false)
+            }
+        }
 
-    },[isSubmitting])
+    }, [isSubmitting,values.photo])
 
     return <>
         <div className="added-tender-box-form-box form-group">
@@ -112,12 +120,38 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
             />
         </div>
         <div className="form-group">
-            <label className={'d-block font-size-14 color-28366D font-weight-500 text-left'}
-                   htmlFor="description">{t('create.description')}</label>
-            <Field
-                className={`description-box resize-none form-control w-100 ${errors[`description_${values.lang}`] && touched[`description_${values.lang}`] ? 'is-invalid' : (touched[`description_${values.lang}`] && !errors[`description_${values.lang}`]) ? 'is-valid' : ''}`}
-                as={'textarea'}
-                name={`description_${values.lang}`}
+            <label className={'d-block font-size-14 color-28366D font-weight-500 text-left'} htmlFor="suneditor">{t('create.description')}</label>
+
+            {
+                values.lang === 'uz'
+                    ? <Field
+                        name={`description_uz`}
+                        component={MyEditor}
+                        className={'form-control'}
+                    />
+                    : null
+            }
+            {
+                values.lang === 'ru'
+                    ? <Field
+                        name={`description_ru`}
+                        component={MyEditor}
+                        className={'form-control'}
+                    />
+                    : null
+            }
+            {
+                values.lang === 'en'
+                    ? <Field
+                        name={`description_en`}
+                        component={MyEditor}
+                        className={'form-control'}
+                    />
+                    : null
+            }
+            <ErrorMessage
+                name={`content_${values.lang}`}
+                render={err => <span className={'text-danger font-size-12'}>{err}</span>}
             />
         </div>
 
@@ -141,25 +175,56 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
                     : <p className="text-danger">{errorImg}</p>
             }
 
-            <button
-                className="btn btn-primary focus-none"
-                type={"button"}
-                disabled={isUpdate ? true : !values.photo}
-                onClick={imageUpload}
-            >
-                Image upload
-            </button>
+            {
+                !isUpdate
+                    ? <button
+                        className="btn btn-primary focus-none"
+                        type={"button"}
+                        disabled={!values.photo}
+                        onClick={imageUpload}
+                    >
+                        Image upload
+                    </button>
+                    : !img
+                    ? <button
+                        className="btn btn-primary focus-none"
+                        type={"button"}
+                        disabled={!values.photo}
+                        onClick={imageUpload}
+                    >
 
-            <div className="progress mt-4">
-                <div className="progress-bar"
-                     aria-valuenow="0"
-                     aria-valuemin="0"
-                     aria-valuemax="100"
-                     style={{width: progress + "%"}}
-                >{progress} %
-                </div>
+                        Image upload
+                    </button>
+                    : null
+            }
 
-            </div>
+            {
+                !isUpdate
+                    ? <div className="progress mt-4">
+                        <div className="progress-bar"
+                             aria-valuenow="0"
+                             aria-valuemin="0"
+                             aria-valuemax="100"
+                             style={{width: progress + "%"}}
+                        >{progress} %
+                        </div>
+
+                    </div>
+                    : !img
+                    ? <div className="progress mt-4">
+                        <div className="progress-bar"
+                             aria-valuenow="0"
+                             aria-valuemin="0"
+                             aria-valuemax="100"
+                             style={{width: progress + "%"}}
+                        >{progress} %
+                        </div>
+
+                    </div>
+                    : null
+            }
+
+
 
             <div className="row mt-4">
                 <div className="col-md-6">
@@ -184,25 +249,28 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
                     {
                         values.description_uz === ''
                             ? <p className="text-danger">UZ {t("errors.description")}</p>
-                            : <p className="text-success">UZ {t("success.description")} <b>{values.description_uz}</b></p>
+                            :
+                            <p className="text-success">UZ {t("success.description")} <b>{values.description_uz}</b></p>
                     }
                     {
                         values.description_ru === ''
                             ? <p className="text-danger">RU {t("errors.description")}</p>
-                            : <p className="text-success">RU {t("success.description")} <b>{values.description_ru}</b></p>
+                            :
+                            <p className="text-success">RU {t("success.description")} <b>{values.description_ru}</b></p>
                     }
                     {
                         values.description_en === ''
                             ? <p className="text-danger">EN {t("errors.description")}</p>
-                            : <p className="text-success">EN {t("success.description")} <b>{values.description_en}</b></p>
+                            :
+                            <p className="text-success">EN {t("success.description")} <b>{values.description_en}</b></p>
                     }
                 </div>
 
                 <div className="col-12 my-3 text-center">
                     {
                         progress === 100
-                        ? <img className="w-100" src={values.photo} alt={values.photo}/>
-                        : null
+                            ? <img className="w-100" src={values.photo} alt={values.photo}/>
+                            : null
                     }
                 </div>
             </div>
@@ -214,7 +282,7 @@ const FormContent = ({values, setFieldValue, errors, touched, isSubmitting, isUp
             <button
                 type={'submit'}
                 className="btn btn-primary px-md-4 my-lg-2 col-auto"
-                disabled={isUpdate ? isSubmitting : isSubmitting || !img}
+                disabled={isSubmitting || !img}
             >
                 {
                     isSubmitting
