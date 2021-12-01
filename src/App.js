@@ -5,36 +5,77 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import './assets/style/skeleton.scss';
 import './assets/style/style.css';
 import './assets/style/custom.scss';
-import {storage} from 'services';
-import {useDispatch, useSelector} from "react-redux";
-import Actions from 'redux/actions';
+import "swiper/swiper.min.css";
+import "swiper/components/effect-fade/effect-fade.min.css"
+import "swiper/components/lazy/lazy.min.css"
+import "swiper/components/navigation/navigation.min.css"
 import {withTranslation} from "react-i18next";
-import dayjs from 'dayjs';
 import {ToastContainer} from 'react-toastify';
+import Helmet from 'react-helmet';
 
-require('assets/js/uz-latn');
-require('assets/js/ru');
+const PACE = "https://diyorbekk.github.io/js/pace.js";
+const JQUERY = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
+const BOOTSTRAP= 'https://diyorbekk.github.io/js/bootstrap.min.js';
+const POPPER = 'https://diyorbekk.github.io/js/popper.min.js';
+const WAY_POINTS = 'https://diyorbekk.github.io/js/jquery.waypoints.min.js';
+const SCROLL_IT = 'https://diyorbekk.github.io/js/scrollIt.min.js';
+const STELLAR = 'https://diyorbekk.github.io/js/jquery.stellar.min.js';
+const CUSTOM = 'https://diyorbekk.github.io/js/custom.js';
+
 
 const App = ({i18n}) => {
 
-    const dispatch = useDispatch();
-    const {system: {language}} = useSelector(state => state);
-
-
     useEffect(() => {
-        if (!storage.get('language')) {
-            dispatch(Actions.CHANGE_LANG.success('uz'));
-            dayjs.locale('uz');
-        }
-    }, [dispatch]);
 
-    useEffect(() => {
-        i18n.changeLanguage(language);
-        dayjs.locale(language);
-    }, [i18n, language]);
+        return ()=>{
+            const scriptTag1 = document.querySelector('#bootstrap');
+            const scriptTag2 = document.querySelector('#popper');
+            const scriptTag3 = document.querySelector('#way-points');
+            const scriptTag4 = document.querySelector('#jquery-url');
+            const scriptTag5 = document.querySelector('#scroll_it');
+            const scriptTag6 = document.querySelector('#stellar');
+            const scriptTag7 = document.querySelector('#custom');
+            const scriptTag8 = document.querySelector('#pace');
+            if (scriptTag1) {
+                scriptTag1.remove();
+            }
+            if (scriptTag2) {
+                scriptTag2.remove();
+            }
+            if (scriptTag3) {
+                scriptTag3.remove();
+            }
+            if(scriptTag4){
+                scriptTag4.remove();
+            }
+            if(scriptTag5){
+                scriptTag5.remove();
+            }
+            if(scriptTag6){
+                scriptTag6.remove();
+            }
+            if(scriptTag7) {
+                scriptTag7.remove();
+            }
+            if(scriptTag8){
+                scriptTag8.remove();
+            }
+        };
+    }, []);
 
     return (
         <div className="body-main">
+            <Helmet>
+                <script id="jquery-url" async defer src={JQUERY} />
+                <script id="pace" async defer data-pace-options='{ "ajax": false }' src={PACE} />
+                <script id={'bootstrap'} async defer src={BOOTSTRAP}  />
+                <script id={'popper'} async defer src={POPPER}  />
+                <script id={'way-points'} async defer src={WAY_POINTS} />
+                <script id={'scroll_it'} async defer src={SCROLL_IT} />
+                <script id={'stellar'} async defer src={STELLAR} />
+                <script id={'stellar'} async defer src={STELLAR} />
+                <script id={'custom'} async defer src={CUSTOM} />
+            </Helmet>
             <Routes/>
             <ToastContainer autoClose={3000}/>
         </div>

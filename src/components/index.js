@@ -1,4 +1,5 @@
 import Header from  './Header';
+import HeaderSlider from  './HeaderSlider';
 import Footer from  './Footer';
 import Spinner from './Spinner';
 import MyForm from './MyForm';
@@ -9,6 +10,7 @@ import Fancybox from './Fancybox';
 
 export {
   Header,
+  HeaderSlider,
   Footer,
   Spinner,
   MyForm,

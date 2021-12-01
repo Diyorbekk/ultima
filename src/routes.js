@@ -1,11 +1,12 @@
 import React, {lazy, Suspense} from 'react';
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import {useSelector} from "react-redux";
-import get from 'lodash.get';
 
 import {Header} from 'components';
 import GearSpin from 'components/GearSpin';
 import Sidebar from "./components/Sidebar";
+
+const Wrapper = lazy(() => import('./pages/Wrapper'));
 
 //Login page
 const Login = lazy(() => import('./pages/Login'));
@@ -15,37 +16,41 @@ const Login = lazy(() => import('./pages/Login'));
 const AdminMain = lazy(() => import('./pages/Admin'));
 const AdminSliderAdd = lazy(() => import('./pages/Admin/Slider/AdminMain'));
 const AdminSliderUpdate = lazy(() => import('./pages/Admin/Slider/Update'));
+const AdminSliderView = lazy(() => import('./pages/Admin/Slider/SliderView'));
+
+const publicRoutes = [
+    {path: '/', exact: true, component: Wrapper},
+    {path: '/login-admin', exact: true, component: Login},
+];
 
 
 const adminRoutes = [
     {path: '/admin', exact: true, component: <AdminMain/>},
     {path: '/admin/slider-add', exact: true, component: <AdminSliderAdd/>},
-    {path: '/admin/slider-add/update/:id', exact: true, component: <AdminSliderUpdate/>},
+    {path: '/admin/slider/update/:id', exact: true, component: <AdminSliderUpdate/>},
+    {path: '/admin/slider/view/:id', exact: true, component: <AdminSliderView/>},
 ];
 
 
 const Routes = () => {
     const {auth} = useSelector(state => state);
 
-    const redirectByRole = role => {
-        switch (role) {
-            case true:
-                return 'admin';
-            default:
-                return "login"
-        }
-    };
-
     return (
         <Router>
             <div className={"flex-fill flex-grow-1"}>
-            <Suspense fallback={<GearSpin isSpinning skipBg style={{height: '100vh', width: "100%"}}/>}>
+            <Suspense fallback={<GearSpin isSpinning style={{height: '100vh', width: "100%"}}/>}>
                 <>
                     <Switch>
-                        <Route exact path="/">
-                            <Redirect to={`/${redirectByRole(get(auth, 'data.registered'))}`}/>
-                        </Route>
-                        <Route exact path="/login" component={Login}/>
+                        {
+                            publicRoutes.map((route, key) => (
+                                <Route
+                                    key={key}
+                                    path={route.path}
+                                    exact={route.exact}
+                                    component={route.component}
+                                />
+                            ))
+                        }
 
                         {
                             adminRoutes.map((route, key) => (
@@ -70,7 +75,7 @@ const Routes = () => {
                                                 </>
                                             )
                                         } else {
-                                            return <Redirect to={'/login'}/>
+                                            return <Redirect to={'/'}/>
                                         }
                                     }}
                                 />
@@ -78,7 +83,8 @@ const Routes = () => {
                         }
 
 
-                        <Redirect from="*" to="/login"/>
+
+                        <Redirect from="*" to="/"/>
                     </Switch>
                 </>
             </Suspense>

@@ -71,14 +71,14 @@ const AdminHome = () => {
                                                     ? Object.keys(data).length
                                                     ? Object.keys(data).map((key, index) => (
                                                         <div className="col-md-3" key={index}>
-                                                            <NavLink to={`/admin/slider/${key}`}
+                                                            <NavLink to={`/admin/slider/view/${key}`}
                                                                      className="card text-decoration-none text-body">
                                                                 <img src={get(data[key], "photo")}
                                                                      className="card-img-top"
                                                                      alt="slider"/>
                                                                 <div className="card-body">
                                                                     <h5 className="card-title">{get(data[key], `title_${language}`)}</h5>
-                                                                    <p className="card-text">{htmlParser(get(data[key], `description_${language}`,''))}</p>
+                                                                    <div className="card-text">{htmlParser(get(data[key], `description_${language}`,''))}</div>
                                                                 </div>
                                                                 <div className="card-footer">
                                                                     <small
@@ -95,7 +95,7 @@ const AdminHome = () => {
                                                                 </button>
                                                                 <NavLink
                                                                     className="btn btn-warning text-white w-100"
-                                                                    to={`/admin/slider-add/update/${key}`}
+                                                                    to={`/admin/slider/update/${key}`}
                                                                 >
                                                                     {t("create.update-btn")}<i
                                                                     className="fas fa-edit font-size-22 ml-2"/>

@@ -12,7 +12,7 @@ const MyEditor = ({field: {name}, form: {values, setFieldValue}}) => {
                 height: '300px',
                 font: ['Monserrat', 'Arial', 'Verdana', 'Roboto', 'Georgia', 'sans-serif'],
                 placeholder: 'Enter content here...',
-                buttonList: [["bold", "underline", "link", "undo", "redo","formatBlock", "fontSize", "italic", "subscript", "superscript", "removeFormat", "fontColor", "indent", "outdent", "align", "print", "preview","hiliteColor"]]
+                buttonList: [["font","bold", "underline", "link", "undo", "redo","formatBlock", "fontSize", "italic", "subscript", "superscript", "removeFormat", "fontColor", "indent", "outdent", "align", "print", "preview","hiliteColor"]]
             }}
             onChange={content => setFieldValue(name, content)}
         />
