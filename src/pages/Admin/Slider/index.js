@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import {useTranslation} from "react-i18next";
-import add from "../../assets/images/add.png";
-import LoadOne from "../../schema/Container/LoadOne";
+import add from "../../../assets/images/add.png";
+import LoadOne from "../../../schema/Container/LoadOne";
 import Modal from "components/Modal";
 import get from "lodash.get";
 import {useDispatch, useSelector} from "react-redux";
 import Actions from "schema/actions";
 import {toast} from "react-toastify";
-import Spin from "../../components/AntSpin";
+import Spin from "../../../components/AntSpin";
 import htmlParser from 'react-html-parser';
 import storageFirebase from 'firebaseGet/storageFirebase'
 
@@ -20,12 +20,12 @@ const AdminHome = () => {
     const [isLoading, setLoading] = useState(false);
     const {system: {language}} = useSelector(state => state);
 
-    const handleRemove = (props) => {
+    const handleRemove = () => {
         setLoading(true);
         setOpen(null);
         dispatch(Actions.DELETE.request({
-            url: '/posts/' + isOpen[1] + ".json",
-            name: "posts.json",
+            url: '/slider/' + isOpen[1] + ".json",
+            name: "slider.json",
             cb: {
                 success: () => {
                     const desertRef = storageFirebase.refFromURL(isOpen[2])
@@ -54,8 +54,8 @@ const AdminHome = () => {
                     {
                         !isLoading
                             ? <LoadOne
-                                url={`/posts.json`}
-                                name={'posts.json'}
+                                url={`/slider.json`}
+                                name={'slider.json'}
                                 asData
                             >
                                 {({isFetched, data = {}}) => {

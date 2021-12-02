@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarContent, SidebarHeader } from 'react-pro-sidebar';
 import './sidebar.scss';
 import { Link, useLocation, useHistory } from 'react-router-dom';
-import SidebarLogo from 'assets/images/logo-login.svg';
+import SidebarLogo from 'assets/images/logo-blue.png';
 import {useDispatch, useSelector} from "react-redux";
 import Actions from 'redux/actions';
 import { toast } from "react-toastify";
@@ -25,9 +25,15 @@ const Sidebar = () =>  {
     "admin": [
       {
         id: 1,
-        title: t('side_bar_admin.Title'),
+        title: t('side_bar_admin.Slider'),
         path: ['/admin', "/admin/slider-add"],
         icon: 'font-size-20 fal fa-sliders-h mr-2',
+      },
+      {
+        id: 2,
+        title: t('side_bar_admin.About'),
+        path: ['/about', "/about/about-add"],
+        icon: 'font-size-20 fal fa-address-card mr-2',
       },
     ],
   };
@@ -110,7 +116,7 @@ const Sidebar = () =>  {
                 className={"pl-1 py-1"}
                 prefix={<i className={"font-size-22 fas fa-sign-out-alt mr-2"}/>}
               >
-                {t("side_bar_admin.Login")}
+                {t("side_bar_admin.Logout")}
               </MenuItem>
             </Menu>
           </SidebarContent>

@@ -22,7 +22,7 @@ const SliderView = (props) => {
     return (
         <>
             <LoadOne
-                url={"/posts/" + id + ".json"}
+                url={"/slider/" + id + ".json"}
                 name={'SliderView'}
                 asData
             >

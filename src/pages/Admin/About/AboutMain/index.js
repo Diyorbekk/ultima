@@ -1,14 +1,14 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
+import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {useHistory} from 'react-router-dom';
-import Actions from 'schema/actions';
-import MyForm from 'components/MyForm';
-import Spinner from 'components/AntSpin';
-import FormContent from '../FormContent';
-import {toast} from 'react-toastify';
+import MyForm from "../../../../components/MyForm";
+import Actions from "../../../../schema/actions";
+import {toast} from "react-toastify";
+import Spinner from "../../../../components/AntSpin";
+import FormContent from "../FormContent";
 
-const AdminMain = () => {
+const AboutMain = () => {
     const {t} = useTranslation();
     const history = useHistory();
     const dispatch = useDispatch();
@@ -50,6 +50,21 @@ const AdminMain = () => {
                         required: true,
                     },
                     {
+                        name: 'location_uz',
+                        value: '',
+                        required: true,
+                    },
+                    {
+                        name: 'location_ru',
+                        value: '',
+                        required: true,
+                    },
+                    {
+                        name: 'location_en',
+                        value: '',
+                        required: true,
+                    },
+                    {
                         name: 'description_uz',
                         value: '',
                         required: true,
@@ -79,6 +94,9 @@ const AdminMain = () => {
                         "title_uz": values.title_uz,
                         "title_ru": values.title_ru,
                         "title_en": values.title_en,
+                        "location_uz": values.location_uz,
+                        "location_ru": values.location_ru,
+                        "location_en": values.location_en,
                         "description_uz": values.description_uz,
                         "description_ru": values.description_ru,
                         "description_en": values.description_en,
@@ -87,8 +105,8 @@ const AdminMain = () => {
 
                     };
                     dispatch(Actions.CREATE.request({
-                        url: '/slider.json',
-                        name: 'NewSlider',
+                        url: '/about.json',
+                        name: 'NewAbout',
                         values,
                         cb: {
                             success: () => {
@@ -125,4 +143,4 @@ const AdminMain = () => {
     )
 }
 
-export default AdminMain
+export default AboutMain

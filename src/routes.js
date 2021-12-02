@@ -1,7 +1,6 @@
 import React, {lazy, Suspense} from 'react';
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import {useSelector} from "react-redux";
-
 import {Footer, Header, HeaderSlider} from 'components';
 import GearSpin from 'components/GearSpin';
 import Sidebar from "./components/Sidebar";
@@ -16,10 +15,16 @@ const Login = lazy(() => import('./pages/Login'));
 
 
 //Admin pages
-const AdminMain = lazy(() => import('./pages/Admin'));
+/* Slider */
+const AdminMain = lazy(() => import('./pages/Admin/Slider'));
 const AdminSliderAdd = lazy(() => import('./pages/Admin/Slider/AdminMain'));
 const AdminSliderUpdate = lazy(() => import('./pages/Admin/Slider/Update'));
 const AdminSliderView = lazy(() => import('./pages/Admin/Slider/SliderView'));
+/* About Us */
+const AdminAbout = lazy(() => import('./pages/Admin/About'))
+const AdminAboutAdd = lazy(() => import('./pages/Admin/About/AboutMain'))
+const AdminAboutUpdate = lazy(() => import('./pages/Admin/About/Update'));
+const AdminAboutView = lazy(() => import('./pages/Admin/About/AboutView'));
 
 const publicRoutes = [
     {path: '/', exact: true, component: <Client/>},
@@ -31,6 +36,10 @@ const adminRoutes = [
     {path: '/admin/slider-add', exact: true, component: <AdminSliderAdd/>},
     {path: '/admin/slider/update/:id', exact: true, component: <AdminSliderUpdate/>},
     {path: '/admin/slider/view/:id', exact: true, component: <AdminSliderView/>},
+    {path: '/about', exact: true, component: <AdminAbout/>},
+    {path: '/about/about-add', exact: true, component: <AdminAboutAdd/>},
+    {path: '/about/update/:id', exact: true, component: <AdminAboutUpdate/>},
+    {path: '/about/view/:id', exact: true, component: <AdminAboutView/>},
 ];
 
 

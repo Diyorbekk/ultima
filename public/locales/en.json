@@ -1,11 +1,12 @@
 {
   "side_bar_admin": {
-    "Title": "Main",
-    "Tenders": "Exit",
-    "ContrDogs": "Сontracts",
-    "News": "News",
-    "Stat": "Statistics",
-    "Academy": "Academy"
+    "Slider": "Slider",
+    "About": "About Us",
+    "Logout": "Logout"
+  },
+  "nav": {
+    "Home": "",
+    "language": "language"
   },
   "login": {
     "title": "Sign in to Dashboard",
@@ -18,6 +19,7 @@
   },
   "create": {
     "title": "Create title",
+    "location": "Create location",
     "description": "Create description",
     "images": "Create images",
     "clear": "Clear",

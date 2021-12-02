@@ -110,7 +110,7 @@ a:hover {
 
 b {
     font-weight: 400;
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .service-link {
@@ -149,7 +149,7 @@ b {
 
 .service-link h6 {
     position: relative;
-    color: #b19777;
+    color: #0e6f90;
     font-size: 13px;
     font-weight: 400;
     margin-top: 0;
@@ -164,7 +164,7 @@ b {
 }
 
 .service-link:hover i {
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .service-link h5 {
@@ -179,7 +179,7 @@ b {
 }
 
 .empty-category {
-    color: #b19777;
+    color: #0e6f90;
     font-size: 22px;
     font-weight: 700;
     margin: 60px 0;
@@ -484,7 +484,7 @@ textarea {
 input:focus,
 textarea:focus {
     border-bottom-width: 1px;
-    border-color: #b19777;
+    border-color: #0e6f90;
 }
 
 input[type="submit"],
@@ -497,7 +497,7 @@ button {
     line-height: 1.75em;
     -webkit-transition: background-color .15s ease-out;
     transition: background-color .15s ease-out;
-    background: #b19777;
+    background: #0e6f90;
     border: 1px solid transparent;
 }
 
@@ -672,7 +672,7 @@ input[type="checkbox"] {
 .project-slider .swiper-pagination-bullets .swiper-pagination-bullet-active,
 .project-slider .swiper-pagination-bullets .swiper-pagination-bullet:hover {
     background: transparent!important;
-    border: 1px solid #b19777!important;
+    border: 1px solid #0e6f90!important;
 }
 
 
@@ -686,7 +686,7 @@ input[type="checkbox"] {
 }
 
 .section-padding h6 {
-    color: #b19777;
+    color: #0e6f90;
     font-size: 20px;
     margin-bottom: 20px;
 }
@@ -704,13 +704,13 @@ input[type="checkbox"] {
 }
 
 .section-title span {
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .section-title2 {
     font-size: 35px;
     font-weight: 300;
-    color: #b19777;
+    color: #0e6f90;
     position: relative;
     line-height: 1.25em;
     margin-bottom: 30px;
@@ -735,13 +735,13 @@ input[type="checkbox"] {
 }
 
 .navbar .icon-bar {
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .navbar .navbar-nav .nav-link {
     font-family: 'Oswald', sans-serif;
     font-size: 15px;
-    font-weight: 300;
+    font-weight: 400;
     color: #fff;
     text-transform: uppercase;
     letter-spacing: 4px;
@@ -756,11 +756,11 @@ input[type="checkbox"] {
 }
 
 .navbar .navbar-nav .nav-link:hover {
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .navbar .navbar-nav .active {
-    color: #b19777 !important;
+    color: #0e6f90 !important;
 }
 
 .nav-scroll {
@@ -781,7 +781,7 @@ input[type="checkbox"] {
 }
 
 .nav-scroll .icon-bar {
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .nav-scroll .navbar-nav .nav-link {
@@ -789,7 +789,7 @@ input[type="checkbox"] {
 }
 
 .nav-scroll .navbar-nav .active {
-    color: #b19777 !important;
+    color: #0e6f90 !important;
 }
 
 .nav-scroll .navbar-nav .logo {
@@ -813,7 +813,7 @@ input[type="checkbox"] {
     display: block;
     width: 100%;
     position: relative;
-    color: #b19777;
+    color: #0e6f90;
     line-height: 1.25em;
     letter-spacing: 5px;
     display: none;
@@ -852,7 +852,7 @@ input[type="checkbox"] {
     display: block;
     width: 100%;
     position: relative;
-    color: #b19777;
+    color: #0e6f90;
     letter-spacing: 9px;
     margin-bottom: 0;
 }
@@ -959,7 +959,7 @@ input[type="checkbox"] {
 .sub-menu .dropdown-item:hover {
     background: transparent;
     padding-left: 20px;
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .dropdown-menu .dropdown-item a,
@@ -1243,8 +1243,8 @@ hr {
 .slider-fade .owl-nav [class*=owl-]:hover {
     transform: scale(0.9);
     background: transparent;
-    border: 1px solid #b19777;
-    color: #b19777;
+    border: 1px solid #0e6f90;
+    color: #0e6f90;
 }
 
 @media screen and (max-width: 768px) {
@@ -1276,7 +1276,7 @@ hr {
 }
 
 .banner-header h5 {
-    color: #b19777;
+    color: #0e6f90;
     font-size: 17px;
     font-family: 'Oswald', sans-serif;
     font-weight: 400;
@@ -1287,7 +1287,7 @@ hr {
     font-size: 40px;
     font-family: 'Oswald', sans-serif;
     font-weight: 400;
-    color: #b19777;
+    color: #0e6f90;
     position: relative;
     margin-bottom: 10px;
     line-height: 1.2em;
@@ -1303,7 +1303,7 @@ hr {
 }
 
 .banner-header p a {
-    color: #b19777;
+    color: #0e6f90;
 }
 
 @media screen and (max-width: 767px) {
@@ -1319,7 +1319,7 @@ hr {
     }
 
     .banner-header h6 a:hover {
-        color: #b19777;
+        color: #0e6f90;
     }
 
     .banner-header h6 i {
@@ -1501,7 +1501,7 @@ hr {
 
 .team .info .social a {
     font-size: 15px;
-    color: #b19777;
+    color: #0e6f90;
     margin: 0 5px;
 }
 
@@ -1647,7 +1647,7 @@ hr {
     top: 0;
     right: -20px;
     bottom: 0;
-    background: #b19777;
+    background: #0e6f90;
     border-radius: 0;
     opacity: 0;
     transition: all 0.3s ease;
@@ -1764,7 +1764,7 @@ hr {
 .projects .item .con h6,
 .projects .item .con h6 a {
     position: relative;
-    color: #b19777;
+    color: #0e6f90;
     font-size: 13px;
     font-weight: 400;
     margin-top: 0px;
@@ -1796,7 +1796,7 @@ hr {
 }
 
 .projects .item .con i:hover {
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .projects .item .con .butn-light {
@@ -1807,7 +1807,7 @@ hr {
 }
 
 .projects .item .con .butn-light:hover {
-    border-color: #b19777;
+    border-color: #0e6f90;
 }
 
 /* line animation */
@@ -1858,7 +1858,7 @@ hr {
 }
 
 .projects-prev-next a:hover {
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .projects-prev-next .projects-prev-next-left a i {
@@ -2063,11 +2063,11 @@ button.mfp-arrow {
 }
 
 .play-button.color {
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .play-button.color .circle-fill circle {
-    fill: #b19777;
+    fill: #0e6f90;
 }
 
 /* video gallery */
@@ -2100,7 +2100,7 @@ button.mfp-arrow {
 .video-gallery-polygon:hover {
     background: #fff;
     border: 1px solid #fff;
-    color: #b19777;
+    color: #0e6f90;
 }
 
 /* testimonials style */
@@ -2182,7 +2182,7 @@ button.mfp-arrow {
     padding-top: 7px;
     font-weight: 400;
     font-family: 'Didact Gothic', sans-serif;
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .testimonials .item .info span {
@@ -2197,7 +2197,7 @@ button.mfp-arrow {
 }
 
 .testimonials .item .info i {
-    color: #b19777;
+    color: #0e6f90;
     font-size: 10px;
 }
 
@@ -2261,7 +2261,7 @@ button.mfp-arrow {
 }
 
 .bauen-blog .item .con .category a:hover {
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .bauen-blog .item .con .category a:last-child {
@@ -2274,7 +2274,7 @@ button.mfp-arrow {
 
 .bauen-blog .item .con h5,
 .bauen-blog .item .con h5 a {
-    color: #b19777;
+    color: #0e6f90;
     font-size: 25px;
     font-family: 'Oswald', sans-serif;
     font-weight: 300;
@@ -2284,7 +2284,7 @@ button.mfp-arrow {
 
 .bauen-blog .item .con h5:hover,
 .bauen-blog .item .con h5 a:hover {
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .bauen-blog .item .con p {
@@ -2332,14 +2332,14 @@ button.mfp-arrow {
     opacity: 1;
     text-decoration: none;
     background: transparent;
-    border: 1px solid #b19777;
-    color: #b19777;
+    border: 1px solid #0e6f90;
+    color: #0e6f90;
 }
 
 .bauen-pagination-wrap li a.active {
     background-color: transparent;
-    border: 1px solid #b19777;
-    color: #b19777;
+    border: 1px solid #0e6f90;
+    color: #0e6f90;
 }
 
 @media screen and (max-width: 768px) {
@@ -2363,7 +2363,7 @@ button.mfp-arrow {
 
 .bauen-comment-section h3 {
     font-size: 16px;
-    color: #b19777;
+    color: #0e6f90;
     font-family: 'Didact Gothic', sans-serif;
     font-weight: 400;
 }
@@ -2402,7 +2402,7 @@ button.mfp-arrow {
 
 .bauen-repay {
     font-size: 14px;
-    color: #b19777;
+    color: #0e6f90;
     margin: 0;
     font-weight: 400;
 }
@@ -2426,7 +2426,7 @@ button.mfp-arrow {
     font-weight: 300;
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
-    background: #b19777;
+    background: #0e6f90;
     color: #fff;
     padding: 13px 30px;
     margin: 0;
@@ -2552,15 +2552,15 @@ button.mfp-arrow {
 }
 
 .main-footer .abot .social-icon a:hover {
-    border: 1px solid #b19777;
+    border: 1px solid #0e6f90;
     background: transparent;
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .main-footer .fothead h6 {
     margin-bottom: 0px;
     font-family: 'Oswald', sans-serif;
-    color: #b19777;
+    color: #0e6f90;
     font-size: 17px;
 }
 
@@ -2599,7 +2599,7 @@ button.mfp-arrow {
 }
 
 .main-footer .sub-footer p a:hover {
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .main-footer .sub-footer p.right {
@@ -2684,7 +2684,7 @@ button.mfp-arrow {
     right: 100%;
     height: 100%;
     width: 100%;
-    background: #b19777;
+    background: #0e6f90;
 }
 
 .pace.pace-active {
@@ -2775,7 +2775,7 @@ button.mfp-arrow {
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    color: #b19777;
+    color: #0e6f90;
     font-family: 'Oswald', sans-serif;
     z-index: 9999;
 }
@@ -2864,11 +2864,11 @@ button.mfp-arrow {
 }
 
 .progress-wrap::after {
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .progress-wrap svg.progress-circle path {
-    stroke: #b19777;
+    stroke: #0e6f90;
 }
 
 /* ======= Accordion Box (for Faqs) style ======= */
@@ -2907,7 +2907,7 @@ button.mfp-arrow {
 }
 
 .accordion-box .block .acc-btn .count {
-    color: #b19777;
+    color: #0e6f90;
     padding-right: 3px;
 }
 
@@ -2918,7 +2918,7 @@ button.mfp-arrow {
     height: 30px;
     font-size: 14px;
     font-weight: normal;
-    color: #b19777;
+    color: #0e6f90;
     line-height: 30px;
     content: "\e61a";
     font-family: "Themify";
@@ -2927,7 +2927,7 @@ button.mfp-arrow {
 
 .accordion-box .block .acc-btn.active {
     background-color: #f4f4f4;
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .accordion-box .block .acc-btn.active:before {
@@ -2995,7 +2995,7 @@ button.mfp-arrow {
     left: 0;
     transform: translateY(-50%);
     font-size: 15px;
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .pricing-card-list li i.unavailable {
@@ -3007,7 +3007,7 @@ button.mfp-arrow {
 }
 
 .pricing-card:hover i {
-    color: #b19777;
+    color: #0e6f90;
 }
 
 .pricing-card-name {
@@ -3016,7 +3016,7 @@ button.mfp-arrow {
     font-size: 16px;
     text-transform: uppercase;
     font-family: 'Oswald', sans-serif;
-    color: #b19777;
+    color: #0e6f90;
     margin-bottom: 20px;
     letter-spacing: 5px;
     font-weight: 300;
@@ -3040,7 +3040,7 @@ button.mfp-arrow {
     font-weight: 300;
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
-    background: #b19777;
+    background: #0e6f90;
     color: #fff;
     padding: 13px 30px;
     margin: 0;
@@ -3196,7 +3196,7 @@ button.mfp-arrow {
     }
 
     .nav-scroll .navbar-collapse .active {
-        color: #b19777 !important;
+        color: #0e6f90 !important;
     }
 
     .dropdown-menu {

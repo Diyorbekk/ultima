@@ -46,7 +46,7 @@ const HeaderClients = () => {
 
 
                     <LoadOne
-                        url={"/posts.json"}
+                        url={"/slider.json"}
                         name={'header'}
 
                         asData

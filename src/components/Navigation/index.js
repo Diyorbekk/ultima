@@ -1,13 +1,15 @@
 import React from "react";
 import {NavLink, useLocation} from "react-router-dom"
 import {NavHashLink} from "react-router-hash-link";
-import logo from "assets/images/logo.svg"
+import logo from "assets/images/logo-blue.png"
 import {useDispatch, useSelector} from "react-redux";
 import Actions from 'redux/actions';
+import {useTranslation} from "react-i18next";
 
 
 const Navigation = () => {
     const {system: {language}} = useSelector(state => state);
+    const { t } = useTranslation();
     const dispatch = useDispatch();
     let location = useLocation();
     let nav
@@ -15,16 +17,14 @@ const Navigation = () => {
     const scrollWidthOffset = (el) => {
         const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
         const yOffset = -880;
-        window.scrollTo({ top: yCoordinate + yOffset, behavior: 'smooth' });
+        window.scrollTo({top: yCoordinate + yOffset, behavior: 'smooth'});
     }
-
 
 
     const handleLangChange = evt => {
         const lang = evt.target.value;
         dispatch(Actions.CHANGE_LANG.success(lang))
     };
-
 
 
     if (location.pathname === '/') {
@@ -68,25 +68,29 @@ const Navigation = () => {
                 <li className="nav-item">
                     <NavLink
                         className="nav-link nav-color"
-                        data-active="/home" to="/"
+                        data-active="/" to="/"
                     >
                         Home
                     </NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavHashLink className="nav-link nav-color" data-active="/about"  to="/#about">About</NavHashLink>
+                    <NavHashLink className="nav-link nav-color" data-active="/about" to="/#about">About</NavHashLink>
                 </li>
                 <li className="nav-item">
-                    <NavHashLink className="nav-link nav-color" data-active="/project" to="/#projects">Projects</NavHashLink>
+                    <NavHashLink className="nav-link nav-color" data-active="/project"
+                                 to="/#projects">Projects</NavHashLink>
                 </li>
                 <li className="nav-item">
-                    <NavHashLink className="nav-link nav-color" data-active="/services" to="/#services" scroll={el => scrollWidthOffset(el)} >Services</NavHashLink>
+                    <NavHashLink className="nav-link nav-color" data-active="/services" to="/#services"
+                                 scroll={el => scrollWidthOffset(el)}>Services</NavHashLink>
                 </li>
                 <li className="nav-item">
-                    <NavHashLink className="nav-link nav-color" data-active="/news" to="/#blog" scroll={el => scrollWidthOffset(el)}>News</NavHashLink>
+                    <NavHashLink className="nav-link nav-color" data-active="/news" to="/#blog"
+                                 scroll={el => scrollWidthOffset(el)}>News</NavHashLink>
                 </li>
                 <li className="nav-item">
-                    <NavHashLink  className="nav-link nav-color" data-active="/contact" to="/#contact" scroll={el => scrollWidthOffset(el)}>Contact</NavHashLink>
+                    <NavHashLink className="nav-link nav-color" data-active="/contact" to="/#contact"
+                                 scroll={el => scrollWidthOffset(el)}>Contact</NavHashLink>
                 </li>
 
             </React.Fragment>
@@ -109,12 +113,16 @@ const Navigation = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto">
                         {nav}
-                        <select onChange={handleLangChange} value={language}
-                                className="nav-item border-0 nav-link bg-transparent focus-none p-0 mb-1">
-                            <option value={"uz"}>UZB</option>
-                            <option value={"ru"}>RUS</option>
-                            <option value={"en"}>ENG</option>
-                        </select>
+                        <div className="d-flex-center">
+                            <p className="nav-language mb-0">{t("nav.language")} <i
+                                className="fal fa-hand-point-right"/></p>
+                            <select onChange={handleLangChange} value={language}
+                                    className="nav-item border-0 nav-link select-navigation bg-transparent focus-none py-0 pl-0 ml-0 mb-0">
+                                <option value={"uz"}>UZB</option>
+                                <option value={"ru"}>RUS</option>
+                                <option value={"en"}>ENG</option>
+                            </select>
+                        </div>
                     </ul>
                 </div>
             </div>

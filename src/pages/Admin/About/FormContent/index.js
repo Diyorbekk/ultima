@@ -45,7 +45,7 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
 
         let filenames = nameList + ext
 
-        const uploadTask = storageFirebase.ref(`slider/${filenames}`).put(values.photo);
+        const uploadTask = storageFirebase.ref(`about/${filenames}`).put(values.photo);
         uploadTask.on(
             "state_changed",
             (snapshot) => {
@@ -70,7 +70,7 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
             },
             () => {
                 storageFirebase
-                    .ref("slider")
+                    .ref("about")
                     .child(filenames)
                     .getDownloadURL()
                     .then(url => {
@@ -122,6 +122,15 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
                 className={`form-control w-100 ${errors[`title_${values.lang}`] && touched[`title_${values.lang}`] ? 'is-invalid' : (touched[`title_${values.lang}`] && !errors[`title_${values.lang}`]) ? 'is-valid' : ''}`}
                 id={`title_${values.lang}`}
                 name={`title_${values.lang}`}
+            />
+        </div>
+        <div className="form-group">
+            <label className={'d-block font-size-14 color-28366D font-weight-500 text-left'}
+                   htmlFor={`location_${values.lang}`}>{t('create.location')}</label>
+            <Field
+                className={`form-control w-100 ${errors[`location_${values.lang}`] && touched[`location_${values.lang}`] ? 'is-invalid' : (touched[`location_${values.lang}`] && !errors[`location_${values.lang}`]) ? 'is-valid' : ''}`}
+                id={`location_${values.lang}`}
+                name={`location_${values.lang}`}
             />
         </div>
         <div className="form-group">

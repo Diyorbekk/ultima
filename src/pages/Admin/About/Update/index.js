@@ -19,7 +19,7 @@ const Create = () => {
     return (
         <>
             <LoadOne
-                url={"/slider/" + id + ".json"}
+                url={"/about/" + id + ".json"}
                 name={"UpdateSlider"}
                 asData
             >
@@ -62,6 +62,19 @@ const Create = () => {
                                         value: get(data, 'description_en', '') ?? '',
                                     },
                                     {
+                                        name: 'location_uz',
+                                        value: get(data, 'location_uz', '') ?? '',
+                                        required: true,
+                                    },
+                                    {
+                                        name: 'location_ru',
+                                        value: get(data, 'location_ru', '') ?? '',
+                                    },
+                                    {
+                                        name: 'location_en',
+                                        value: get(data, 'location_en', '') ?? '',
+                                    },
+                                    {
                                         name: 'photo',
                                         value: get(data, 'photo'),
                                         required: true,
@@ -79,13 +92,16 @@ const Create = () => {
                                         "description_uz": values.description_uz,
                                         "description_ru": values.description_ru,
                                         "description_en": values.description_en,
+                                        "location_uz": values.location_uz,
+                                        "location_ru": values.location_ru,
+                                        "location_en": values.location_en,
                                         "time": values.time,
                                         "photo": values.photo,
 
                                     };
 
                                     dispatch(Actions.UPDATE.request({
-                                        url: '/posts/' + id + ".json",
+                                        url: '/about/' + id + ".json",
                                         values,
                                         cb: {
                                             success: () => {

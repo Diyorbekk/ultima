@@ -11,7 +11,11 @@ import "swiper/components/lazy/lazy.min.css"
 import "swiper/components/navigation/navigation.min.css"
 import {withTranslation} from "react-i18next";
 import {ToastContainer} from 'react-toastify';
+import {storage} from 'services';
+import {useDispatch, useSelector} from "react-redux";
+import Actions from 'redux/actions';
 import Helmet from 'react-helmet';
+import dayjs from 'dayjs';
 
 const PACE = "https://diyorbekk.github.io/js/pace.js";
 const JQUERY = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
@@ -26,6 +30,19 @@ const CUSTOM = 'https://diyorbekk.github.io/js/custom.js';
 
 
 const App = ({i18n}) => {
+
+    const dispatch = useDispatch();
+    const {system: {language}} = useSelector(state => state);
+    useEffect(() => {
+        if (!storage.get('language')) {
+            dispatch(Actions.CHANGE_LANG.success('uz'));
+            dayjs.locale('uz');
+        }
+    }, [dispatch]);
+    useEffect(() => {
+        i18n.changeLanguage(language).then(r => r);
+        dayjs.locale(language);
+    }, [i18n, language]);
 
     useEffect(() => {
 
