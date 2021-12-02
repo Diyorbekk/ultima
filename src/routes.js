@@ -2,11 +2,14 @@ import React, {lazy, Suspense} from 'react';
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import {useSelector} from "react-redux";
 
-import {Header} from 'components';
+import {Footer, Header, HeaderSlider} from 'components';
 import GearSpin from 'components/GearSpin';
 import Sidebar from "./components/Sidebar";
+import Offline from "./components/Offline";
+import Navigation from "./components/Navigation";
+import ToTop from "./components/ToTop";
 
-const Wrapper = lazy(() => import('./pages/Wrapper'));
+const Client = lazy(() => import('./pages/Clients'));
 
 //Login page
 const Login = lazy(() => import('./pages/Login'));
@@ -19,8 +22,7 @@ const AdminSliderUpdate = lazy(() => import('./pages/Admin/Slider/Update'));
 const AdminSliderView = lazy(() => import('./pages/Admin/Slider/SliderView'));
 
 const publicRoutes = [
-    {path: '/', exact: true, component: Wrapper},
-    {path: '/login-admin', exact: true, component: Login},
+    {path: '/', exact: true, component: <Client/>},
 ];
 
 
@@ -37,58 +39,72 @@ const Routes = () => {
 
     return (
         <Router>
-            <div className={"flex-fill flex-grow-1"}>
-            <Suspense fallback={<GearSpin isSpinning style={{height: '100vh', width: "100%"}}/>}>
-                <>
-                    <Switch>
-                        {
-                            publicRoutes.map((route, key) => (
-                                <Route
-                                    key={key}
-                                    path={route.path}
-                                    exact={route.exact}
-                                    component={route.component}
-                                />
-                            ))
-                        }
-
-                        {
-                            adminRoutes.map((route, key) => (
-                                <Route
-                                    key={key}
-                                    path={route.path}
-                                    exact={route.exact}
-                                    render={() => {
-                                        if (auth.isAuthenticated) {
-                                            return (
-                                                <>
-                                                    < Header/>
-                                                    <div className={"flex-fill flex-grow-1 d-flex"}>
-                                                        <Sidebar/>
-                                                        <div
-                                                            className={"wrapper-block pt-100 pb-50 w-100 overflowY-auto vh-100 px-lg-4 px-3"}>
-                                                            <div className={"device-wrapper"}>
-                                                                {route.component}
-                                                            </div>
+            <Offline>
+                <div className={"flex-fill flex-grow-1"}>
+                    <Suspense fallback={<GearSpin isSpinning style={{height: '100vh', width: "100%"}}/>}>
+                        <>
+                            <Switch>
+                                <Route exact path="/login" component={Login}/>
+                                {
+                                    publicRoutes.map((route, key) => (
+                                        <Route
+                                            key={key}
+                                            path={route.path}
+                                            exact={route.exact}
+                                            render={() => {
+                                                return (
+                                                    <>
+                                                        <div>
+                                                            <ToTop/>
+                                                            <Navigation/>
+                                                            <HeaderSlider/>
+                                                            {route.component}
+                                                            <Footer/>
                                                         </div>
-                                                    </div>
-                                                </>
-                                            )
-                                        } else {
-                                            return <Redirect to={'/'}/>
-                                        }
-                                    }}
-                                />
-                            ))
-                        }
+                                                    </>
+                                                )
+                                            }}
+                                        />
+                                    ))
+                                }
+
+                                {
+                                    adminRoutes.map((route, key) => (
+                                        <Route
+                                            key={key}
+                                            path={route.path}
+                                            exact={route.exact}
+                                            render={() => {
+                                                if (auth.isAuthenticated) {
+                                                    return (
+                                                        <>
+                                                            < Header/>
+                                                            <div className={"flex-fill flex-grow-1 d-flex"}>
+                                                                <Sidebar/>
+                                                                <div
+                                                                    className={"wrapper-block pt-100 pb-50 w-100 overflowY-auto vh-100 px-lg-4 px-3"}>
+                                                                    <div className={"device-wrapper"}>
+                                                                        {route.component}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </>
+                                                    )
+                                                } else {
+                                                    return <Redirect to={'/'}/>
+                                                }
+                                            }}
+                                        />
+                                    ))
+                                }
 
 
-
-                        <Redirect from="*" to="/"/>
-                    </Switch>
-                </>
-            </Suspense>
-            </div>
+                                <Redirect from="*" to="/"/>
+                            </Switch>
+                        </>
+                    </Suspense>
+                </div>
+            </Offline>
         </Router>
     )
 };

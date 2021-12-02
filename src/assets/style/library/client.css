@@ -567,8 +567,17 @@ input[type="checkbox"] {
 }
 
 .bg-img {
-    background-size: cover;
+    background-size: 100%;
     background-repeat: no-repeat;
+    background-position: center top;
+}
+
+@media screen and (max-width: 480px) {
+    .bg-img {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
 }
 
 .bg-fixed {
@@ -1169,8 +1178,16 @@ hr {
     left: 0;
     height: 100%;
     width: 100%;
-    background-size: cover;
-    background-position: center;
+    background-size: 100%;
+    background-position: center top;
+}
+
+@media screen and (max-width: 768px) {
+    .slider .item,
+    .slider-fade .item {
+        background-size: cover;
+        background-position: center;
+    }
 }
 
 .slider .item .caption,

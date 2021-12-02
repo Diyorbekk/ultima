@@ -99,7 +99,7 @@ const Sidebar = () =>  {
                     cb: {
                       success: () => {
                         toast.success(t("login.out"));
-                        history.push("/login");
+                        history.push("/");
                       },
                       error: () => {
                         toast.error(t("login.error"));
