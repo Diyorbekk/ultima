@@ -63,13 +63,12 @@ const About = () => {
                                             isSpinning={!isFetched}
                                             style={{display: "contents"}}
                                         >
-
-
                                             {
                                                 isFetched && data !== null
                                                     ? Object.keys(data).length
                                                     ? Object.keys(data).map((key, index) => (
                                                         <div className="col-md-3" key={index}>
+                                                            {console.log(Object.keys(data).length)}
                                                             <NavLink to={`/about/view/${key}`}
                                                                      className="card text-decoration-none text-body">
                                                                 <img src={get(data[key], "photo")}
@@ -102,8 +101,20 @@ const About = () => {
                                                             </div>
                                                         </div>
                                                     ))
-                                                    : null
-                                                    : null
+                                                    : Object.keys(data).length === 2
+                                                    ? null
+                                                        : <div className="col-md-3">
+                                                            <NavLink to={`/about/about-add`}
+                                                                     className="border rounded d-flex align-items-center justify-content-center">
+                                                                <img src={add} style={{width: 150}} alt="icon-add"/>
+                                                            </NavLink>
+                                                        </div>
+                                                    : <div className="col-md-3">
+                                                        <NavLink to={`/about/about-add`}
+                                                                 className="border rounded d-flex align-items-center justify-content-center">
+                                                            <img src={add} style={{width: 150}} alt="icon-add"/>
+                                                        </NavLink>
+                                                    </div>
                                             }
 
 
@@ -119,12 +130,12 @@ const About = () => {
                             </Spin>
                     }
 
-                    <div className="col-md-3">
+                    {/*<div className="col-md-3">
                         <NavLink to={`/about/about-add`}
                                  className="border rounded d-flex align-items-center justify-content-center">
                             <img src={add} style={{width: 150}} alt="icon-add"/>
                         </NavLink>
-                    </div>
+                    </div>*/}
                 </div>
                 <Modal
                     isOpen={!!isOpen}
