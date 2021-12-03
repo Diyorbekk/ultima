@@ -33,10 +33,12 @@
   },
   "errors": {
     "title": "Sarlavhasi bo'sh",
-    "description": "Tavsif bo'sh"
+    "description": "Tavsif bo'sh",
+    "location": "Joylashuv boʻsh"
   },
   "success": {
-    "title": "saralavha",
-    "description": "tavsif"
+    "title": "Saralavha",
+    "description": "Tavsif",
+    "location":  "Manzil"
   }
 }

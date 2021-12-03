@@ -33,10 +33,12 @@
   },
   "errors": {
     "title": "The title is empty",
-    "description": "The description is empty"
+    "description": "The description is empty",
+    "location": "Location empty"
   },
   "success": {
     "title": "Title",
-    "description": "Description"
+    "description": "Description",
+    "location": "Location"
   }
 }

@@ -33,10 +33,12 @@
   },
   "errors": {
     "title": "Заголовок пуст",
-    "description": "Описание пустое"
+    "description": "Описание пустое",
+    "location": "Место пусто"
   },
   "success": {
     "title": "Заголовок",
-    "description": "Описание"
+    "description": "Описание",
+    "location": "Место нахождения"
   }
 }

@@ -23,7 +23,7 @@ const ToTop = () => {
             updateProgress();
             window.$(window).scroll(updateProgress);
             let offset = 150;
-            let duration = 0;
+            let duration = 10;
             window.$(window).on('scroll', function () {
                 if (window.$(this).scrollTop() > offset) {
                     window.$('.progress-wrap').addClass('active-progress');

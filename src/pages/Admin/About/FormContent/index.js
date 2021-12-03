@@ -283,6 +283,27 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
                     }
                 </div>
 
+                <div className="col-md-6">
+                    {
+                        values.location_uz === ''
+                            ? <p className="text-danger">UZ {t("errors.location")}</p>
+                            :
+                            <p className="text-success">UZ {t("success.location")} <b>{values.location_uz}</b></p>
+                    }
+                    {
+                        values.location_ru === ''
+                            ? <p className="text-danger">RU {t("errors.location")}</p>
+                            :
+                            <p className="text-success">RU {t("success.location")} <b>{values.location_ru}</b></p>
+                    }
+                    {
+                        values.location_en === ''
+                            ? <p className="text-danger">EN {t("errors.location")}</p>
+                            :
+                            <p className="text-success">EN {t("success.location")} <b>{values.location_en}</b></p>
+                    }
+                </div>
+
                 <div className="col-12 my-3 text-center">
                     {
                         img
