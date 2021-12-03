@@ -9,6 +9,7 @@ import Spin from 'components/AntSpin';
 import FormContent from '../FormContent';
 import get from 'lodash.get';
 import LoadOne from "schema/Container/LoadOne";
+import {toast} from "react-toastify";
 
 const Create = () => {
     const {t} = useTranslation();
@@ -81,17 +82,19 @@ const Create = () => {
                                         "description_en": values.description_en,
                                         "time": values.time,
                                         "photo": values.photo,
-
                                     };
 
                                     dispatch(Actions.UPDATE.request({
-                                        url: '/posts/' + id + ".json",
+                                        url: '/slider/' + id + ".json",
                                         values,
                                         cb: {
                                             success: () => {
+                                                toast.success("O'zgartirildi");
+                                                history.push("/admin");
                                                 resetForm();
                                             },
                                             error: () => {
+                                                toast.error("Xatolik yuz berdi");
                                             },
                                             finally: () => {
                                                 setSubmitting(false);

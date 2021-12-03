@@ -2666,7 +2666,7 @@ button.mfp-arrow {
     border: 0px;
     height: 1px;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgb(255, 255, 255);
     -webkit-transition: all 1s;
     -o-transition: all 1s;
     transition: all 1s;
@@ -2700,7 +2700,7 @@ button.mfp-arrow {
     height: 100vh;
     top: 0;
     left: 0;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgb(255, 255, 255);
     -webkit-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
     -o-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
     transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
@@ -2733,7 +2733,7 @@ button.mfp-arrow {
     left: 0;
     height: 50%;
     width: 100%;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgb(255, 255, 255);
     -webkit-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
     -o-transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
     transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);

@@ -9,6 +9,7 @@ import Spin from 'components/AntSpin';
 import FormContent from '../FormContent';
 import get from 'lodash.get';
 import LoadOne from "schema/Container/LoadOne";
+import {toast} from "react-toastify";
 
 const Create = () => {
     const {t} = useTranslation();
@@ -105,9 +106,12 @@ const Create = () => {
                                         values,
                                         cb: {
                                             success: () => {
+                                                toast.success("O'zgartirildi");
+                                                history.push("/about");
                                                 resetForm();
                                             },
                                             error: () => {
+                                                toast.error("Xatolik yuz berdi");
                                             },
                                             finally: () => {
                                                 setSubmitting(false);

@@ -24,8 +24,8 @@ const Category = () => {
         setLoading(true);
         setOpen(null);
         dispatch(Actions.DELETE.request({
-            url: '/slider/' + isOpen[1] + ".json",
-            name: "slider.json",
+            url: '/category/' + isOpen[1] + ".json",
+            name: "category.json",
             cb: {
                 success: () => {
                     const desertRef = storageFirebase.refFromURL(isOpen[2])
@@ -54,8 +54,8 @@ const Category = () => {
                     {
                         !isLoading
                             ? <LoadOne
-                                url={`/slider.json`}
-                                name={'slider.json'}
+                                url={`/category.json`}
+                                name={'category.json'}
                                 asData
                             >
                                 {({isFetched, data = {}}) => {
@@ -71,7 +71,7 @@ const Category = () => {
                                                     ? Object.keys(data).length
                                                     ? Object.keys(data).map((key, index) => (
                                                         <div className="col-md-3" key={index}>
-                                                            <NavLink to={`/admin/slider/view/${key}`}
+                                                            <NavLink to={`/category/view/${key}`}
                                                                      className="card text-decoration-none text-body">
                                                                 <img src={get(data[key], "photo")}
                                                                      className="card-img-top"
@@ -95,7 +95,7 @@ const Category = () => {
                                                                 </button>
                                                                 <NavLink
                                                                     className="btn btn-warning text-white w-100"
-                                                                    to={`/admin/slider/update/${key}`}
+                                                                    to={`/category/update/${key}`}
                                                                 >
                                                                     {t("create.update-btn")}<i
                                                                     className="fas fa-edit font-size-22 ml-2"/>
@@ -120,7 +120,7 @@ const Category = () => {
                             </Spin>
                     }
                     <div className="col-md-3">
-                        <NavLink to={`/admin/slider-add`}
+                        <NavLink to={`/category/category-add`}
                                  className="border rounded d-flex align-items-center justify-content-center">
                             <img src={add} style={{width: 150}} alt="icon-add"/>
                         </NavLink>

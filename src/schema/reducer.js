@@ -109,14 +109,14 @@ const schemaReducer = (state=initialState, action) => {
     }
 
     case Actions.UPDATE.SUCCESS: {
-      const { name, data, id } = action.payload;
+      const { name, data } = action.payload;
 
       return {
         ...state,
         [name]: {
           ...get(state, `[${name}]`, {}),
           isFetched: true,
-          data: [...get(state, `[${name}].data`).map(item => item.id === id ? {...data} : item)],
+          data: [...get(state, `[${name}].data`, []), data],
           error: null
         }
       };

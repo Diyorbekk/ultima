@@ -36,7 +36,7 @@ const Offline = (props) => {
         <>
             {
                 onlineStatus
-                    ? <>{props.children} <img src={noConnect} hidden alt="No Internet"/></>
+                    ? <>{props.children}</>
                     : <div className="error-body">
                         <img src={noConnect} id="tableBanner" className="error-img" alt="No Internet"/>
                         <h3 className="error-title">{t('modalsTexts.text1')}</h3>
