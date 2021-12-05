@@ -85,7 +85,7 @@ const CategoryMain = () => {
                     },
                     {
                         name: 'photo',
-                        value: null,
+                        value: [],
                         required: true,
                     },
                 ]}

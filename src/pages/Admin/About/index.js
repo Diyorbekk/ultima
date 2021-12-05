@@ -68,7 +68,6 @@ const About = () => {
                                                     ? Object.keys(data).length
                                                     ? Object.keys(data).map((key, index) => (
                                                         <div className="col-md-3" key={index}>
-                                                            {console.log(Object.keys(data).length)}
                                                             <NavLink to={`/about/view/${key}`}
                                                                      className="card text-decoration-none text-body">
                                                                 <img src={get(data[key], "photo")}

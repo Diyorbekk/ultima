@@ -1,51 +1,95 @@
-import React, {useRef, useState} from 'react';
-import {FilePond, registerPlugin} from "react-filepond";
-import "filepond/dist/filepond.min.css";
-import FilePondPluginImageExifOrientation from 'filepond-plugin-image-exif-orientation'
-import FilePondPluginImagePreview from 'filepond-plugin-image-preview'
-import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
-import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css'
-import FilePondPluginImageTransform from 'filepond-plugin-image-transform';
+import React, {useEffect, useState} from 'react';
+import Compressor from "compressorjs";
+import "./uploader.scss";
 
-registerPlugin(FilePondPluginImageTransform,FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginFileValidateType)
 
 const FilePondUploader = ({id, field, form: {values, setFieldValue}}) => {
-    const [files, setFiles] = useState([])
-    const filePondRef = useRef(null)
+    const [size, setSize] = useState(null)
 
     const handleChange = (e) => {
-        setFiles(e);
-        setFieldValue(field.name, e);
+        const fileListFor = e.target.files;
+        let compressedImgs = [];
+        let fileArray = [];
+        for (let file of fileListFor) {
+            fileArray.push({
+                "url": URL.createObjectURL(file),
+                "name": file.name
+            })
+            new Compressor(file, {
+                quality: 0.8,
+                success: function (compressedResult) {
+                    compressedImgs.push(compressedResult);
+                    setFieldValue(field.name, compressedImgs)
+                },
+            });
 
-        if (e.length === 0) {
-            setFieldValue(field.name, null);
         }
-
+        setSize(fileArray)
     };
 
+    const handleRemoveItem = id => {
+        setSize(() => {
+            const list = size.filter(item => item.name !== id);
+            return list
+        });
+        return setFieldValue(field.name, field.value.filter(item => {return item.name !== id}));
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(()=> {
+        if (size !== null) {
+            if (size.length === 0) {
+                setSize(null)
+            }
+        }
+    },)
+
     return (
-        <>
-            <FilePond
-                files={files}
-                allowImageTransform={true}
-                allowReorder={true}
-                acceptedFileTypes={['image/*']}
-                imageTransformOutputQuality={0}
-                imageTransformOutputQualityMod={'always'}
-                ref={filePondRef}
-                id={id}
-                name={"input"}
-                allowMultiple={true}
-                onupdatefiles={handleChange}
-                onremovefile={(file,FileIndex) => {
-                    const index = field.value.indexOf(FileIndex);
-                    if (index > -1) {
-                        field.value.splice(index, 1);
-                    }
-                }}
-                labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
-            />
-        </>
-    )
-}
+        <div>
+            <label className={'file-uploader'} htmlFor={id}>
+                <input
+                    className={'d-none'}
+                    type="file"
+                    id={id}
+                    onChange={handleChange}
+                    multiple
+                    accept=".png,.jpg,.jpeg"
+                />
+                +
+            </label>
+
+            <div className="col-12 my-4">
+                {
+                    values[field.name] !== null
+                        ? <div className="image_view row">
+                            {
+                                size !== null
+                                    ? size.length
+                                    ? <>
+                                        {
+                                            size.map((result, index) => {
+                                                return <React.Fragment key={index}>
+                                                    <div className="col-md-4 px-0 position-relative">
+                                                        <img src={result.url} className="image-preview_img" alt="photos"/>
+                                                        <span
+                                                            className={'remove-preview'}
+                                                            onClick={() => handleRemoveItem(result.name)}
+                                                        >&times;</span>
+                                                    </div>
+                                                </React.Fragment>
+                                            })
+                                        }
+                                    </>
+                                    : null
+                                    : null
+                            }
+
+                        </div>
+                        : null
+                }
+            </div>
+
+        </div>
+    );
+};
 export default FilePondUploader
