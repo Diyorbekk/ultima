@@ -250,6 +250,11 @@ img.intLink { border: 0;  width: auto!important;}
     border-color: black!important;
 }
 
+.card-img-top {
+    max-height: 200px;
+    object-fit: cover;
+}
+
 /*!* Login *!
 
 .login {

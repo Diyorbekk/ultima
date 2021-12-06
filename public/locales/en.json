@@ -23,6 +23,7 @@
     "location": "Create location",
     "description": "Create description",
     "images": "Create images",
+    "category": "Create category",
     "clear": "Clear",
     "delete-btn": "Delete",
     "update-btn": "Update",
@@ -32,14 +33,25 @@
     "save": "Save",
     "change": "Change"
   },
+  "category": {
+    "Electric": "Electric",
+    "Industry": "Industry",
+    "Construction": "Construction",
+    "Furniture": "Furniture",
+    "Automotive": "Automotive",
+    "Custom": "Custom manufacturing",
+    "Choose": "Choose"
+  },
   "errors": {
     "title": "The title is empty",
     "description": "The description is empty",
-    "location": "Location empty"
+    "location": "Location empty",
+    "category": "Category empty"
   },
   "success": {
     "title": "Title",
     "description": "Description",
-    "location": "Location"
+    "location": "Location",
+    "category": "Category"
   }
 }

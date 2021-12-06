@@ -28,12 +28,14 @@ const Category = () => {
             name: "category.json",
             cb: {
                 success: () => {
-                    const desertRef = storageFirebase.refFromURL(isOpen[2])
-                    desertRef.delete().then(function() {
-                        toast.success("O'chirildi");
-                    }).catch(function(error) {
-                        toast.error("Xatolik yuz berdi");
-                    });
+                    isOpen[2].forEach(file => {
+                        const desertRef = storageFirebase.refFromURL(file)
+                        desertRef.delete().then(function () {
+                        }).catch(function (error) {
+                            toast.error("Xatolik yuz berdi");
+                        });
+                    })
+
                     toast.success("O'chirildi");
                 },
                 error: () => {
@@ -71,36 +73,59 @@ const Category = () => {
                                                     ? Object.keys(data).length
                                                     ? Object.keys(data).map((key, index) => (
                                                         <div className="col-md-3" key={index}>
-                                                            <NavLink to={`/category/view/${key}`}
-                                                                     className="card text-decoration-none text-body">
-                                                                <img src={get(data[key], "photo")}
-                                                                     className="card-img-top"
-                                                                     alt="slider"/>
-                                                                <div className="card-body">
-                                                                    <h5 className="card-title">{get(data[key], `title_${language}`)}</h5>
-                                                                    <div className="card-text">{htmlParser(get(data[key], `description_${language}`,''))}</div>
-                                                                </div>
-                                                                <div className="card-footer">
-                                                                    <small
-                                                                        className="text-muted">{get(data[key], 'time')}</small>
-                                                                </div>
-                                                            </NavLink>
+                                                            {
+                                                                get(data[key], `category_data`).map((res, i) => (
+                                                                    <React.Fragment key={i}>
+                                                                        <NavLink to={`/category/view/${key}`}
+                                                                                 className="card text-decoration-none text-body d-flex">
+                                                                            <img src={get(res, "photo")}
+                                                                                 className="card-img-top" alt="category"/>
 
-                                                            <div className="d-flex">
-                                                                <button
-                                                                    className="btn btn-danger text-white w-100"
-                                                                    onClick={() => setOpen([get(data[key], `title_${language}`), key, get(data[key], "photo") , 'delete'])}>
-                                                                    {t("create.delete-btn")}<i
-                                                                    className="fas fa-trash font-size-22 ml-2"/>
-                                                                </button>
-                                                                <NavLink
-                                                                    className="btn btn-warning text-white w-100"
-                                                                    to={`/category/update/${key}`}
-                                                                >
-                                                                    {t("create.update-btn")}<i
-                                                                    className="fas fa-edit font-size-22 ml-2"/>
-                                                                </NavLink>
-                                                            </div>
+                                                                            <div className="card-body">
+                                                                                <h4 className="card-title two-line-text">
+                                                                                    {
+                                                                                        get(data[key], `category_id`) === 1
+                                                                                            ? <>{t("category.Electric")}</>
+                                                                                            : get(data[key], `category_id`) === 2
+                                                                                            ? <>{t("category.Industry")}</>
+                                                                                            : get(data[key], `category_id`) === 3
+                                                                                                ? <>{t("category.Construction")}</>
+                                                                                                : get(data[key], `category_id`) === 4
+                                                                                                    ? <>{t("category.Furniture")}</>
+                                                                                                    : get(data[key], `category_id`) === 5
+                                                                                                        ? <>{t("category.Automotive")}</>
+                                                                                                        : get(data[key], `category_id`) === 6
+                                                                                                            ? <>{t("category.Custom")}</>
+                                                                                                            : null
+                                                                                    }
+                                                                                </h4>
+                                                                                <h5 className="card-title two-line-text">{get(res, `title_${language}`)}</h5>
+                                                                                <div
+                                                                                    className="card-text three-line-text">{htmlParser(get(res, `description_${language}`, ''))}</div>
+                                                                            </div>
+                                                                            <div className="card-footer">
+                                                                                <small
+                                                                                    className="text-muted">{get(data[key], 'time')}</small>
+                                                                            </div>
+                                                                        </NavLink>
+                                                                        <div className="d-flex">
+                                                                            <button
+                                                                                className="btn btn-danger text-white w-100"
+                                                                                onClick={() => setOpen([get(res, `title_${language}`), key, get(res, "photo"), 'delete'])}>
+                                                                                {t("create.delete-btn")}<i
+                                                                                className="fas fa-trash font-size-22 ml-2"/>
+                                                                            </button>
+                                                                            <NavLink
+                                                                                className="btn btn-warning text-white w-100"
+                                                                                to={`/category/update/${key}`}
+                                                                            >
+                                                                                {t("create.update-btn")}<i
+                                                                                className="fas fa-edit font-size-22 ml-2"/>
+                                                                            </NavLink>
+                                                                        </div>
+                                                                    </React.Fragment>
+                                                                ))
+                                                            }
                                                         </div>
                                                     ))
                                                     : null

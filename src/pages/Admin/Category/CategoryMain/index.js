@@ -50,21 +50,6 @@ const CategoryMain = () => {
                         required: true,
                     },
                     {
-                        name: 'location_uz',
-                        value: '',
-                        required: true,
-                    },
-                    {
-                        name: 'location_ru',
-                        value: '',
-                        required: true,
-                    },
-                    {
-                        name: 'location_en',
-                        value: '',
-                        required: true,
-                    },
-                    {
                         name: 'description_uz',
                         value: '',
                         required: true,
@@ -84,29 +69,34 @@ const CategoryMain = () => {
                         value: s,
                     },
                     {
-                        name: 'photo',
-                        value: [],
+                        name: 'category_id',
+                        value: '',
                         required: true,
+                    },
+                    {
+                        name: 'photo',
+                        value: null,
+                        type: 'array',
+                        required: true
                     },
                 ]}
                 onSubmit={({values, setSubmitting, resetForm}) => {
                     values = {
-                        "title_uz": values.title_uz,
-                        "title_ru": values.title_ru,
-                        "title_en": values.title_en,
-                        "location_uz": values.location_uz,
-                        "location_ru": values.location_ru,
-                        "location_en": values.location_en,
-                        "description_uz": values.description_uz,
-                        "description_ru": values.description_ru,
-                        "description_en": values.description_en,
+                        "category_id": values.category_id,
                         "time": values.time,
-                        "photo": values.photo,
-
+                        "category_data": [{
+                            "title_uz": values.title_uz,
+                            "title_ru": values.title_ru,
+                            "title_en": values.title_en,
+                            "photo": values.photo,
+                            "description_uz": values.description_uz,
+                            "description_ru": values.description_ru,
+                            "description_en": values.description_en,
+                        }],
                     };
                     dispatch(Actions.CREATE.request({
-                        url: '/about.json',
-                        name: 'NewAbout',
+                        url: '/category.json',
+                        name: 'NewCategory',
                         values,
                         cb: {
                             success: () => {

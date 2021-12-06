@@ -3,6 +3,7 @@ import {ErrorMessage, Field} from "formik";
 import FilePondUploader from 'components/FilePondUploader';
 import MyEditor from 'components/SunEditor';
 import storageFirebase from 'firebaseGet/storageFirebase'
+import get from "lodash.get";
 
 const langs = [
     {
@@ -18,6 +19,8 @@ const langs = [
         value: 'en'
     },
 ];
+
+const createErrorClass = (errors, touched, name) => `${errors[name] && touched[name] ? 'is-invalid' : (touched[name] && !errors[name]) ? 'is-valid' : ''}`;
 
 const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitting, isUpdate = false, t}) => {
         const [progress, setProgress] = useState(0)
@@ -85,13 +88,40 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
             })
             Promise.all(promises)
                 .then(() => {
-                    setFieldValue("photo", imagesUrl)
-                    setImg(true)
+                    setTimeout(() => {
+                        setFieldValue("photo", imagesUrl)
+                        setImg(true)
+                    }, 5000)
+
                 })
                 .catch(err => setErrorImg(err.code));
         }
 
+        const selectChangeHandler = event => {
+            if (values.lang === 'uz') {
+                console.log("uz")
+                setFieldValue("category_uz", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
+                setFieldValue("category_ru", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
+                setFieldValue("category_en", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
+                setFieldValue("category_id", event.nativeEvent.target.selectedIndex)
+            }
+            if (values.lang === 'ru') {
+                console.log("ru")
+                setFieldValue("category_uz", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
+                setFieldValue("category_ru", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
+                setFieldValue("category_en", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
+                setFieldValue("category_id", event.nativeEvent.target.selectedIndex)
+            }
+            if (values.lang === 'en') {
+                setFieldValue("category_uz", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
+                setFieldValue("category_ru", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
+                setFieldValue("category_en", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
+                setFieldValue("category_id", event.nativeEvent.target.selectedIndex)
+            }
+        }
+
         useEffect(() => {
+            console.log(values.category_id)
             if (isSubmitting) {
                 setProgress(0)
                 setImg(false)
@@ -133,16 +163,57 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
                     id={`title_${values.lang}`}
                     name={`title_${values.lang}`}
                 />
+                <ErrorMessage
+                    name={`title_${values.lang}`}
+                    render={err => <span className={'text-danger font-size-12'}>{err}</span>}
+                />
             </div>
             <div className="form-group">
                 <label className={'d-block font-size-14 color-28366D font-weight-500 text-left'}
-                       htmlFor={`location_${values.lang}`}>{t('create.location')}</label>
+                       htmlFor={`category_id`}>{t('create.category')}</label>
+
                 <Field
-                    className={`form-control w-100 ${errors[`location_${values.lang}`] && touched[`location_${values.lang}`] ? 'is-invalid' : (touched[`location_${values.lang}`] && !errors[`location_${values.lang}`]) ? 'is-valid' : ''}`}
-                    id={`location_${values.lang}`}
-                    name={`location_${values.lang}`}
+                    as={"select"}
+                    id={`category_id`}
+                    className={`form-control focus-none ${createErrorClass(errors, touched, `category_id`)}`}
+                    onChange={(event) => {
+                        values.category_id === ''
+                            ? setFieldValue("category_id", event.nativeEvent.target.selectedIndex)
+                            : setFieldValue("category_id", event.nativeEvent.target.selectedIndex)
+                    }}
+                    value={values.category_id}
+                    name={`category_id`}
+                >
+                    <option value={''} disabled hidden selected>
+                        {t("category.Choose")}
+                    </option>
+                    <option value={1}>
+                        {t("category.Electric")}
+                    </option>
+                    <option value={2}>
+                        {t("category.Industry")}
+                    </option>
+                    <option value={3}>
+                        {t("category.Construction")}
+                    </option>
+                    <option value={4}>
+                        {t("category.Furniture")}
+                    </option>
+                    <option value={5}>
+                        {t("category.Automotive")}
+                    </option>
+                    <option value={6}>
+                        {t("category.Custom")}
+                    </option>
+                </Field>
+
+
+                <ErrorMessage
+                    name={`category_id`}
+                    render={err => <span className={'text-danger font-size-12'}>{err}</span>}
                 />
             </div>
+
             <div className="form-group">
                 <label className={'d-block font-size-14 color-28366D font-weight-500 text-left'}
                        htmlFor={`suneditor_${values.lang}`}>{t('create.description')}</label>
@@ -183,147 +254,154 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
                 />
             </div>
 
-            <div className={'form-group'}>
-                <label
-                    className={'d-block font-size-14 color-28366D font-weight-500 text-left'}
-                    htmlFor="photo">{t('create.images')}</label>
-                <Field
-                    id={'photo'}
-                    name={'photo'}
-                    component={FilePondUploader}
-                />
-                <ErrorMessage
-                    name={'photo'}
-                    render={err => <span className={'text-danger d-block mb-2 font-size-12'}>{err}</span>}
-                />
+            {
+                !img
+                    ? <div className={'form-group'}>
+                        <label
+                            className={'d-block font-size-14 color-28366D font-weight-500 text-left'}
+                            htmlFor="photo">{t('create.images')}</label>
+                        <Field
+                            id={'photo'}
+                            name={'photo'}
+                            component={FilePondUploader}
+                        />
+                        <ErrorMessage
+                            name={'photo'}
+                            render={err => <span className={'text-danger d-block mb-2 font-size-12'}>{err}</span>}
+                        />
 
-                {
-                    errorImg === null
-                        ? null
-                        : <p className="text-danger">{errorImg}</p>
-                }
-
-                {
-                    !isUpdate
-                        ? <button
-                            className="btn btn-primary focus-none"
-                            type={"button"}
-                            disabled={values.photo.length === 0}
-                            onClick={imageUpload}
-                        >
-                            Image upload
-                        </button>
-                        : !img
-                        ? <button
-                            className="btn btn-primary focus-none"
-                            type={"button"}
-                            disabled={values.photo.length === 0}
-                            onClick={imageUpload}
-                        >
-
-                            Image upload
-                        </button>
-                        : null
-                }
-
-                {
-                    !isUpdate
-                        ? <div className="progress mt-4">
-                            <div className="progress-bar"
-                                 aria-valuenow="0"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100"
-                                 style={{width: progress + "%"}}
-                            >{progress} %
-                            </div>
-
-                        </div>
-                        : !img
-                        ? <div className="progress mt-4">
-                            <div className="progress-bar"
-                                 aria-valuenow="0"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100"
-                                 style={{width: progress + "%"}}
-                            >{progress} %
-                            </div>
-
-                        </div>
-                        : null
-                }
-
-
-                <div className="row mt-4">
-                    <div className="col-md-6">
                         {
-                            values.title_uz === ''
-                                ? <p className="text-danger">UZ {t("errors.title")}</p>
-                                : <p className="text-success">UZ {t("success.title")} <b>{values.title_uz}</b></p>
+                            errorImg === null
+                                ? null
+                                : <p className="text-danger">{errorImg}</p>
                         }
-                        {
-                            values.title_ru === ''
-                                ? <p className="text-danger">RU {t("errors.title")}</p>
-                                : <p className="text-success">RU {t("success.title")} <b>{values.title_ru}</b></p>
-                        }
-                        {
-                            values.title_en === ''
-                                ? <p className="text-danger">EN {t("errors.title")}</p>
-                                : <p className="text-success">EN {t("success.title")} <b>{values.title_en}</b></p>
-                        }
-                    </div>
 
-                    <div className="col-md-6">
                         {
-                            values.description_uz === ''
-                                ? <p className="text-danger">UZ {t("errors.description")}</p>
-                                :
-                                <p className="text-success">UZ {t("success.description")} <b>{values.description_uz}</b></p>
-                        }
-                        {
-                            values.description_ru === ''
-                                ? <p className="text-danger">RU {t("errors.description")}</p>
-                                :
-                                <p className="text-success">RU {t("success.description")} <b>{values.description_ru}</b></p>
-                        }
-                        {
-                            values.description_en === ''
-                                ? <p className="text-danger">EN {t("errors.description")}</p>
-                                :
-                                <p className="text-success">EN {t("success.description")} <b>{values.description_en}</b></p>
-                        }
-                    </div>
+                            !isUpdate
+                                ? <button
+                                    className="btn btn-primary focus-none"
+                                    type={"button"}
+                                    disabled={values.photo === null || values.photo.length === 0}
+                                    onClick={imageUpload}
+                                >
+                                    Image upload
+                                </button>
+                                : !img
+                                ? <button
+                                    className="btn btn-primary focus-none"
+                                    type={"button"}
+                                    disabled={values.photo === null || values.photo.length === 0}
+                                    onClick={imageUpload}
+                                >
 
-                    <div className="col-md-6">
-                        {
-                            values.location_uz === ''
-                                ? <p className="text-danger">UZ {t("errors.location")}</p>
-                                :
-                                <p className="text-success">UZ {t("success.location")} <b>{values.location_uz}</b></p>
+                                    Image upload
+                                </button>
+                                : null
                         }
-                        {
-                            values.location_ru === ''
-                                ? <p className="text-danger">RU {t("errors.location")}</p>
-                                :
-                                <p className="text-success">RU {t("success.location")} <b>{values.location_ru}</b></p>
-                        }
-                        {
-                            values.location_en === ''
-                                ? <p className="text-danger">EN {t("errors.location")}</p>
-                                :
-                                <p className="text-success">EN {t("success.location")} <b>{values.location_en}</b></p>
-                        }
-                    </div>
 
-                    <div className="col-12 my-3 text-center">
                         {
-                            img
-                                ? <><h3>Все изображения загружены успешно ✔️</h3></>
+                            !isUpdate
+                                ? <div className="progress mt-4">
+                                    <div className="progress-bar"
+                                         aria-valuenow="0"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100"
+                                         style={{width: progress + "%"}}
+                                    >{progress} %
+                                    </div>
+
+                                </div>
+                                : !img
+                                ? <div className="progress mt-4">
+                                    <div className="progress-bar"
+                                         aria-valuenow="0"
+                                         aria-valuemin="0"
+                                         aria-valuemax="100"
+                                         style={{width: progress + "%"}}
+                                    >{progress} %
+                                    </div>
+
+                                </div>
                                 : null
                         }
                     </div>
+                    : null
+            }
+
+            <div className="row mt-4">
+                <div className="col-12 my-3 text-center">
+                    {
+                        img
+                            ? <><h3>Все изображения загружены успешно ✔</h3></>
+                            : null
+                    }
                 </div>
 
+                <div className="col-md-6">
+                    {
+                        values.title_uz === ''
+                            ? <p className="text-danger">UZ {t("errors.title")}</p>
+                            : <p className="text-success">UZ {t("success.title")} <b>{values.title_uz}</b></p>
+                    }
+                    {
+                        values.title_ru === ''
+                            ? <p className="text-danger">RU {t("errors.title")}</p>
+                            : <p className="text-success">RU {t("success.title")} <b>{values.title_ru}</b></p>
+                    }
+                    {
+                        values.title_en === ''
+                            ? <p className="text-danger">EN {t("errors.title")}</p>
+                            : <p className="text-success">EN {t("success.title")} <b>{values.title_en}</b></p>
+                    }
+                </div>
+
+                <div className="col-md-6">
+                    {
+                        values.description_uz === ''
+                            ? <p className="text-danger">UZ {t("errors.description")}</p>
+                            :
+                            <p className="text-success">UZ {t("success.description")} <b>{values.description_uz}</b>
+                            </p>
+                    }
+                    {
+                        values.description_ru === ''
+                            ? <p className="text-danger">RU {t("errors.description")}</p>
+                            :
+                            <p className="text-success">RU {t("success.description")} <b>{values.description_ru}</b>
+                            </p>
+                    }
+                    {
+                        values.description_en === ''
+                            ? <p className="text-danger">EN {t("errors.description")}</p>
+                            :
+                            <p className="text-success">EN {t("success.description")} <b>{values.description_en}</b>
+                            </p>
+                    }
+                </div>
+
+                <div className="col-md-6">
+                    {
+                        values.category_id === ""
+                            ? <p className="text-danger">UZ {t("errors.category")}</p>
+                            : <p className="text-success">UZ {t("success.category")} <b>{
+                                values.category_id === 1
+                                    ? <>{t("category.Electric")}</>
+                                    : values.category_id === 2
+                                    ? <>{t("category.Industry")}</>
+                                    : values.category_id === 3
+                                        ? <>{t("category.Construction")}</>
+                                        : values.category_id === 4
+                                            ? <>{t("category.Furniture")}</>
+                                            : values.category_id === 5
+                                                ? <>{t("category.Automotive")}</>
+                                                : values.category_id === 6
+                                                    ? <>{t("category.Custom")}</>
+                                                    : null
+                            }</b></p>
+                    }
+                </div>
             </div>
+
 
             <div
                 className="d-flex added-tender-box-form-box align-items-center justify-content-end my-4 col-12 flex-wrap">

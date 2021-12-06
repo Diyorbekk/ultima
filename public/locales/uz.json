@@ -23,6 +23,7 @@
     "location": "Joy yaratish",
     "description": "Tavsif yaratish",
     "images": "Rasm yaratish",
+    "category": "Kategoriya yaratish",
     "clear": "Tozalash",
     "save": "Saqlash",
     "change": "O'zgartirish",
@@ -31,6 +32,15 @@
     "delete": "Yo'q qilmoqchimisiz",
     "ask-yes": "Ha",
     "ask-no": "Yo'q"
+  },
+  "category": {
+    "Electric": "Elektr",
+    "Industry": "Sanoat",
+    "Construction": "Qurilish",
+    "Furniture": "Mebel",
+    "Automotive": "Avtomobilsozlik",
+    "Custom": "Maxsus ishlab chiqarish",
+    "Choose": "Tanlang"
   },
   "errors": {
     "title": "Sarlavhasi bo'sh",

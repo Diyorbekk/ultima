@@ -77,8 +77,8 @@ const AdminHome = () => {
                                                                      className="card-img-top"
                                                                      alt="slider"/>
                                                                 <div className="card-body">
-                                                                    <h5 className="card-title">{get(data[key], `title_${language}`)}</h5>
-                                                                    <div className="card-text">{htmlParser(get(data[key], `description_${language}`,''))}</div>
+                                                                    <h5 className="card-title two-line-text">{get(data[key], `title_${language}`)}</h5>
+                                                                    <div className="card-text three-line-text">{htmlParser(get(data[key], `description_${language}`,''))}</div>
                                                                 </div>
                                                                 <div className="card-footer">
                                                                     <small
