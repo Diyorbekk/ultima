@@ -28,6 +28,7 @@ const AdminAboutView = lazy(() => import('./pages/Admin/About/AboutView'));
 /* Category */
 const AdminCategory = lazy(() => import('./pages/Admin/Category'))
 const AdminCategoryAdd = lazy(() => import('./pages/Admin/Category/CategoryMain'))
+const AdminCategoryUpdate = lazy(() => import('./pages/Admin/Category/Update'))
 
 const publicRoutes = [
     {path: '/', exact: true, component: <Client/>},
@@ -45,6 +46,7 @@ const adminRoutes = [
     {path: '/about/view/:id', exact: true, component: <AdminAboutView/>},
     {path: '/category', exact: true, component: <AdminCategory/>},
     {path: '/category/category-add', exact: true, component: <AdminCategoryAdd/>},
+    {path: '/category/update/:id', exact: true, component: <AdminCategoryUpdate/>},
 ];
 
 

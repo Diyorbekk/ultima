@@ -6,6 +6,14 @@ import "./uploader.scss";
 const FilePondUploader = ({id, field, form: {values, setFieldValue}}) => {
     const [size, setSize] = useState(null)
 
+    useEffect(()=> {
+        if (values[field.name] === null || values[field.name].length === 0) {
+            setSize(null)
+        } else {
+            setSize(values[field.name])
+        }
+    },[])
+
     const handleChange = (e) => {
         const fileListFor = e.target.files;
         let compressedImgs = [];
@@ -27,12 +35,12 @@ const FilePondUploader = ({id, field, form: {values, setFieldValue}}) => {
         setSize(fileArray)
     };
 
-    const handleRemoveItem = id => {
+    const handleRemoveItem = (id,full) => {
         setSize(() => {
-            const list = size.filter(item => item.name !== id);
+            const list = size.filter(item => item.name ? item.name !== id : item !== full);
             return list
         });
-        return setFieldValue(field.name, field.value.filter(item => {return item.name !== id}));
+        return setFieldValue(field.name, field.value.filter(item => {return item.name ? item.name !== id : item !== full}));
     };
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,10 +78,10 @@ const FilePondUploader = ({id, field, form: {values, setFieldValue}}) => {
                                             size.map((result, index) => {
                                                 return <React.Fragment key={index}>
                                                     <div className="col-md-4 px-0 position-relative">
-                                                        <img src={result.url} className="image-preview_img" alt="photos"/>
+                                                        <img src={result.url || result} className="image-preview_img" alt="photos"/>
                                                         <span
                                                             className={'remove-preview'}
-                                                            onClick={() => handleRemoveItem(result.name)}
+                                                            onClick={() => handleRemoveItem(result.name, result)}
                                                         >&times;</span>
                                                     </div>
                                                 </React.Fragment>

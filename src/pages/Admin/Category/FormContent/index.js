@@ -97,31 +97,7 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
                 .catch(err => setErrorImg(err.code));
         }
 
-        const selectChangeHandler = event => {
-            if (values.lang === 'uz') {
-                console.log("uz")
-                setFieldValue("category_uz", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
-                setFieldValue("category_ru", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
-                setFieldValue("category_en", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
-                setFieldValue("category_id", event.nativeEvent.target.selectedIndex)
-            }
-            if (values.lang === 'ru') {
-                console.log("ru")
-                setFieldValue("category_uz", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
-                setFieldValue("category_ru", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
-                setFieldValue("category_en", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
-                setFieldValue("category_id", event.nativeEvent.target.selectedIndex)
-            }
-            if (values.lang === 'en') {
-                setFieldValue("category_uz", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
-                setFieldValue("category_ru", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
-                setFieldValue("category_en", event.nativeEvent.target[event.nativeEvent.target.selectedIndex].text)
-                setFieldValue("category_id", event.nativeEvent.target.selectedIndex)
-            }
-        }
-
         useEffect(() => {
-            console.log(values.category_id)
             if (isSubmitting) {
                 setProgress(0)
                 setImg(false)
@@ -382,8 +358,8 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
                 <div className="col-md-6">
                     {
                         values.category_id === ""
-                            ? <p className="text-danger">UZ {t("errors.category")}</p>
-                            : <p className="text-success">UZ {t("success.category")} <b>{
+                            ? <p className="text-danger">{t("errors.category")}</p>
+                            : <p className="text-success">{t("success.category")} <b>{
                                 values.category_id === 1
                                     ? <>{t("category.Electric")}</>
                                     : values.category_id === 2
