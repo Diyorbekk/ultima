@@ -91,6 +91,7 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
                     setTimeout(() => {
                         setFieldValue("photo", imagesUrl)
                         setImg(true)
+                        setProgress(0)
                     }, 5000)
 
                 })
@@ -103,17 +104,17 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
                 setImg(false)
             }
             if (isUpdate || values.photo === null) {
-                if (typeof values.photo === "string" || typeof values.photo === "undefined") {
-                    setImg(true)
-                } else {
+                if (values.photo === null || values.photo.length === 0) {
                     setImg(false)
+                } else {
+                    setImg(true)
                 }
             }
 
         }, [isSubmitting, values.photo])
 
         return <>
-            <button onClick={() => history.goBack()} className='btn btn-primary btn-sm font-size-18 mb-3'>
+            <button type={"button"} onClick={() => history.goBack()} className='btn btn-primary btn-sm font-size-18 mb-3'>
                 <i className={'fa fa-angle-left font-weight-light mt-1'}/> Orqaga
             </button>
 
@@ -230,79 +231,75 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
                 />
             </div>
 
-            {
-                !img
-                    ? <div className={'form-group'}>
-                        <label
-                            className={'d-block font-size-14 color-28366D font-weight-500 text-left'}
-                            htmlFor="photo">{t('create.images')}</label>
-                        <Field
-                            id={'photo'}
-                            name={'photo'}
-                            component={FilePondUploader}
-                        />
-                        <ErrorMessage
-                            name={'photo'}
-                            render={err => <span className={'text-danger d-block mb-2 font-size-12'}>{err}</span>}
-                        />
+            <div className={'form-group'}>
+                <label
+                    className={'d-block font-size-14 color-28366D font-weight-500 text-left'}
+                    htmlFor="photo">{t('create.images')}</label>
+                <Field
+                    id={'photo'}
+                    name={'photo'}
+                    component={FilePondUploader}
+                />
+                <ErrorMessage
+                    name={'photo'}
+                    render={err => <span className={'text-danger d-block mb-2 font-size-12'}>{err}</span>}
+                />
 
-                        {
-                            errorImg === null
-                                ? null
-                                : <p className="text-danger">{errorImg}</p>
-                        }
+                {
+                    errorImg === null
+                        ? null
+                        : <p className="text-danger">{errorImg}</p>
+                }
 
-                        {
-                            !isUpdate
-                                ? <button
-                                    className="btn btn-primary focus-none"
-                                    type={"button"}
-                                    disabled={values.photo === null || values.photo.length === 0}
-                                    onClick={imageUpload}
-                                >
-                                    Image upload
-                                </button>
-                                : !img
-                                ? <button
-                                    className="btn btn-primary focus-none"
-                                    type={"button"}
-                                    disabled={values.photo === null || values.photo.length === 0}
-                                    onClick={imageUpload}
-                                >
+                {
+                    !isUpdate
+                        ? <button
+                            className="btn btn-primary focus-none"
+                            type={"button"}
+                            disabled={values.photo === null || values.photo.length === 0 || img}
+                            onClick={imageUpload}
+                        >
+                            Image upload
+                        </button>
+                        : !img
+                        ? <button
+                            className="btn btn-primary focus-none"
+                            type={"button"}
+                            disabled={values.photo === null || values.photo.length === 0 || img}
+                            onClick={imageUpload}
+                        >
 
-                                    Image upload
-                                </button>
-                                : null
-                        }
+                            Image upload
+                        </button>
+                        : null
+                }
 
-                        {
-                            !isUpdate
-                                ? <div className="progress mt-4">
-                                    <div className="progress-bar"
-                                         aria-valuenow="0"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"
-                                         style={{width: progress + "%"}}
-                                    >{progress} %
-                                    </div>
+                {
+                    !isUpdate
+                        ? <div className="progress mt-4">
+                            <div className="progress-bar"
+                                 aria-valuenow="0"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 style={{width: progress + "%"}}
+                            >{progress} %
+                            </div>
 
-                                </div>
-                                : !img
-                                ? <div className="progress mt-4">
-                                    <div className="progress-bar"
-                                         aria-valuenow="0"
-                                         aria-valuemin="0"
-                                         aria-valuemax="100"
-                                         style={{width: progress + "%"}}
-                                    >{progress} %
-                                    </div>
+                        </div>
+                        : !img
+                        ? <div className="progress mt-4">
+                            <div className="progress-bar"
+                                 aria-valuenow="0"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 style={{width: progress + "%"}}
+                            >{progress} %
+                            </div>
 
-                                </div>
-                                : null
-                        }
-                    </div>
-                    : null
-            }
+                        </div>
+                        : null
+                }
+            </div>
 
             <div className="row mt-4">
                 <div className="col-12 my-3 text-center">

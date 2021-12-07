@@ -76,6 +76,7 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
                     .then(url => {
                         setFieldValue("photo", url)
                         setImg(true)
+                        setProgress(0)
                     });
             }
         );
@@ -97,7 +98,7 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
     }, [isSubmitting,values.photo])
 
     return <>
-        <button onClick={() => history.goBack()} className={'btn btn-primary btn-sm font-size-18 mb-3'}>
+        <button type={"button"} onClick={() => history.goBack()} className={'btn btn-primary btn-sm font-size-18 mb-3'}>
             <i className={'fa fa-angle-left font-weight-light'}/> Orqaga
         </button>
 
@@ -197,7 +198,7 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
                     ? <button
                         className="btn btn-primary focus-none"
                         type={"button"}
-                        disabled={!values.photo || progress === 100}
+                        disabled={!values.photo || img}
                         onClick={imageUpload}
                     >
                         Image upload
@@ -206,7 +207,7 @@ const FormContent = ({values, setFieldValue, errors, touched, history, isSubmitt
                     ? <button
                         className="btn btn-primary focus-none"
                         type={"button"}
-                        disabled={!values.photo || progress === 100}
+                        disabled={!values.photo || img}
                         onClick={imageUpload}
                     >
 

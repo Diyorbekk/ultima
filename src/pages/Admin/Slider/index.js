@@ -72,7 +72,7 @@ const AdminHome = () => {
                                                     ? Object.keys(data).map((key, index) => (
                                                         <div className="col-md-3" key={index}>
                                                             <NavLink to={`/admin/slider/view/${key}`}
-                                                                     className="card text-decoration-none text-body">
+                                                                     className="card text-decoration-none text-body d-flex">
                                                                 <img src={get(data[key], "photo")}
                                                                      className="card-img-top"
                                                                      alt="slider"/>

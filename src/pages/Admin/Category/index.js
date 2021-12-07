@@ -74,11 +74,7 @@ const Category = () => {
                                                     ? Object.keys(data).map((key, index) => (
                                                         <div className="col-md-3" key={index}>
                                                             {
-                                                                console.log(data[key])
-                                                            }
-                                                            {
-                                                                get(data[key], 'category_data', '').length
-                                                                    ? get(data[key], `category_data`).map((res, i) => (
+                                                                    get(data[key], `category_data`).map((res, i) => (
                                                                         <React.Fragment key={i}>
                                                                             <NavLink to={`/category/view/${key}`}
                                                                                      className="card text-decoration-none text-body d-flex">
@@ -129,7 +125,6 @@ const Category = () => {
                                                                             </div>
                                                                         </React.Fragment>
                                                                     ))
-                                                                    : null
                                                             }
                                                         </div>
                                                     ))
