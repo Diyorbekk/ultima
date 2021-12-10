@@ -2,7 +2,6 @@ import React from "react";
 import about from "assets/images/about.jpg"
 import LoadOne from "../../../schema/Container/LoadOne";
 import Spin from "../../../components/AntSpin";
-import {NavLink} from "react-router-dom";
 import get from "lodash.get";
 import htmlParser from "react-html-parser";
 import {useTranslation} from "react-i18next";

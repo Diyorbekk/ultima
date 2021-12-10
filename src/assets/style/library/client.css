@@ -660,7 +660,7 @@ input[type="checkbox"] {
 
 .project-slider .swiper-pagination-bullets {
     margin-top: 0;
-    bottom: 0;
+    bottom: 0!important;
     line-height: .7;
     display: block;
 }
@@ -672,6 +672,7 @@ input[type="checkbox"] {
     border-radius: 50%;
     background: transparent;
     border: 1px solid #999;
+    display: inline-block!important;
 }
 
 .project-slider .swiper-pagination-bullets .swiper-pagination-bullet-active,
