@@ -16,6 +16,17 @@ const Create = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const {id} = useParams();
+    function join(t, a, s) {
+        function format(m) {
+            let f = new Intl.DateTimeFormat('en', m);
+            return f.format(t);
+        }
+
+        return a.map(format).join(s);
+    }
+
+    let a = [{day: 'numeric'}, {month: 'short'}, {year: 'numeric'}];
+    let s = join(new Date(), a, '-');
 
     return (
         <>
@@ -61,6 +72,10 @@ const Create = () => {
                                     {
                                         name: 'description_en',
                                         value: get(data, 'description_en', '') ?? '',
+                                    },
+                                    {
+                                        name: 'time',
+                                        value: s,
                                     },
                                     {
                                         name: 'photo',

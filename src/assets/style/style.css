@@ -1,5 +1,7 @@
 @import url(./library/all.min.css);
 @import url(./library/animate.min.css);
+@import url(./library/helper.css);
+@import url(./library/magnific-popup.css);
 @import url(./library/client.css);
 @import url(./library/owl.carousel.min.css);
 @import url(./library/owl.theme.default.min.css);

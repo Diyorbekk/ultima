@@ -23,7 +23,7 @@ const AdminMain = () => {
     }
 
     let a = [{day: 'numeric'}, {month: 'short'}, {year: 'numeric'}];
-    let s = join(new Date, a, '-');
+    let s = join(new Date(), a, '-');
     return (
         <>
             <MyForm

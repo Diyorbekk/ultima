@@ -17,6 +17,18 @@ const Create = () => {
     const dispatch = useDispatch();
     const {id} = useParams();
 
+    function join(t, a, s) {
+        function format(m) {
+            let f = new Intl.DateTimeFormat('en', m);
+            return f.format(t);
+        }
+
+        return a.map(format).join(s);
+    }
+
+    let a = [{day: 'numeric'}, {month: 'short'}, {year: 'numeric'}];
+    let s = join(new Date(), a, '-');
+    
     return (
         <>
             <LoadOne
@@ -74,6 +86,10 @@ const Create = () => {
                                     {
                                         name: 'location_en',
                                         value: get(data, 'location_en', '') ?? '',
+                                    },
+                                    {
+                                        name: 'time',
+                                        value: s,
                                     },
                                     {
                                         name: 'photo',

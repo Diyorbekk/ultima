@@ -19,6 +19,7 @@ import Helmet from 'react-helmet';
 import dayjs from 'dayjs';
 
 const PACE = "https://diyorbekk.github.io/js/pace.js";
+const MAGNIFIC = 'https://diyorbekk.github.io/js/jquery.magnific-popup.js';
 const JQUERY = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
 const BOOTSTRAP= 'https://diyorbekk.github.io/js/bootstrap.min.js';
 const POPPER = 'https://diyorbekk.github.io/js/popper.min.js';
@@ -26,7 +27,6 @@ const WAY_POINTS = 'https://diyorbekk.github.io/js/jquery.waypoints.min.js';
 const SCROLL_IT = 'https://diyorbekk.github.io/js/scrollIt.min.js';
 const STELLAR = 'https://diyorbekk.github.io/js/jquery.stellar.min.js';
 const MIGRATE = 'https://diyorbekk.github.io/js/jquery-migrate-3.0.0.min.js';
-const MAGNIFIC = 'https://diyorbekk.github.io/js/jquery.magnific-popup.js';
 const CUSTOM = 'https://diyorbekk.github.io/js/custom.js';
 
 
@@ -96,13 +96,13 @@ const App = ({i18n}) => {
             <Helmet>
                 <script id="jquery-url" async defer src={JQUERY} />
                 <script id="pace" async defer data-pace-options='{ "ajax": false }' src={PACE} />
+                <script id={'magnific'} async defer src={MAGNIFIC} />
                 <script id={'bootstrap'} async defer src={BOOTSTRAP}  />
                 <script id={'popper'} async defer src={POPPER}  />
                 <script id={'way-points'} async defer src={WAY_POINTS} />
                 <script id={'scroll_it'} async defer src={SCROLL_IT} />
                 <script id={'stellar'} async defer src={STELLAR} />
                 <script id={'migrate'} async defer src={MIGRATE} />
-                <script id={'magnific'} async defer src={MAGNIFIC} />
                 <script id={'custom'} async defer src={CUSTOM} />
             </Helmet>
             <Routes/>
