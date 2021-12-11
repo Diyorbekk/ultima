@@ -6,7 +6,14 @@
     "Logout": "Chiqish"
   },
   "nav": {
-    "Home": "",
+    "Home": "Asosiy",
+    "About": "Biz haqimizda",
+    "Products": "Mahsulotlar",
+    "Objects": "Ob'ektlar",
+    "Videos": "Videolar",
+    "Certificate": "Sertifikat",
+    "Partners": "Hamkorlar",
+    "Contacts": "Kontaktlar",
     "language": "til"
   },
   "login": {

@@ -6,7 +6,14 @@
     "Logout": "Выйти"
   },
   "nav": {
-    "Home": "",
+    "Home": "Главный",
+    "About": "О нас",
+    "Products": "Продукты",
+    "Objects": "Объекты",
+    "Videos": "Видео",
+    "Certificate": "Сертификат",
+    "Partners": "Партнеры",
+    "Contacts": "Контакты",
     "language": "язык"
   },
   "login": {

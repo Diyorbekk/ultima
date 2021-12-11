@@ -35,7 +35,8 @@ const About = () => {
                                             ? Object.keys(data).map((key, index) => (
                                                 <React.Fragment key={index}>
                                                     <div className="col-md-6 mb-30 animate-box" data-animate-effect="1">
-                                                        <h2 className="section-title">{get(data[key], `title_${language}`, "")}</h2>
+                                                        <h2 className="section-title">About <span>Ultima Enery</span></h2>
+                                                        <h4 className="section-title font-size-18">{get(data[key], `title_${language}`, "")}</h4>
                                                         {htmlParser(get(data[key], `description_${language}`, ''))}
                                                     </div>
                                                     <div className="col-md-6 animate-box" data-animate-effect="1">

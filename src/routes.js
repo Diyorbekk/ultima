@@ -1,7 +1,7 @@
 import React, {lazy, Suspense} from 'react';
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import {useSelector} from "react-redux";
-import {Footer, Header, HeaderSlider} from 'components';
+import {Footer, Header} from 'components';
 import GearSpin from 'components/GearSpin';
 import Sidebar from "./components/Sidebar";
 import Offline from "./components/Offline";
@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import ToTop from "./components/ToTop";
 
 const Client = lazy(() => import('./pages/Clients'));
+const ClientCategoryView = lazy(() => import('./pages/Admin/Category/CategoryView'));
 
 //Login page
 const Login = lazy(() => import('./pages/Login'));
@@ -33,6 +34,7 @@ const AdminCategoryView = lazy(() => import('./pages/Admin/Category/CategoryView
 
 const publicRoutes = [
     {path: '/', exact: true, component: <Client/>},
+    {path: '/category/view/:id', exact: true, component: <ClientCategoryView/>},
 ];
 
 
@@ -72,13 +74,10 @@ const Routes = () => {
                                             render={() => {
                                                 return (
                                                     <>
-                                                        <div>
-                                                            <ToTop/>
-                                                            <Navigation/>
-                                                            <HeaderSlider/>
-                                                            {route.component}
-                                                            <Footer/>
-                                                        </div>
+                                                        <ToTop/>
+                                                        <Navigation/>
+                                                        {route.component}
+                                                        <Footer/>
                                                     </>
                                                 )
                                             }}

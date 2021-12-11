@@ -105,8 +105,8 @@ const Create = () => {
                                         cb: {
                                             success: () => {
                                                 toast.success("O'zgartirildi");
-                                                history.push("/admin");
                                                 resetForm();
+                                                history.push("/admin");
                                             },
                                             error: () => {
                                                 toast.error("Xatolik yuz berdi");

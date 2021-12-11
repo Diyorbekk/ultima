@@ -119,6 +119,7 @@ const Create = () => {
                                                         success: () => {
                                                             toast.success("O'zgartirildi");
                                                             resetForm();
+                                                            history.push("/category");
                                                         },
                                                         error: () => {
                                                             toast.error("Xatolik yuz berdi");

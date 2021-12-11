@@ -92,7 +92,7 @@ const App = ({i18n}) => {
     }, []);
 
     return (
-        <div className="body-main">
+        <>
             <Helmet>
                 <script id="jquery-url" async defer src={JQUERY} />
                 <script id="pace" async defer data-pace-options='{ "ajax": false }' src={PACE} />
@@ -107,7 +107,7 @@ const App = ({i18n}) => {
             </Helmet>
             <Routes/>
             <ToastContainer autoClose={3000}/>
-        </div>
+        </>
     );
 };
 

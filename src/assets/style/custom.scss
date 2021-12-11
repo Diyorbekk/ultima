@@ -1,8 +1,4 @@
-body {
-  padding-right: 5px;
-}
-
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
@@ -42,7 +38,7 @@ body {
 
 ::-webkit-scrollbar-corner {
   background: transparent;
-}
+}*/
 
 header {
   z-index: 6;
@@ -219,6 +215,10 @@ header {
   color: #fff !important;
 }
 
+.select-navigation.nav-color {
+  color: #272727!important;
+}
+
 .select-navigation option {
   background: #000;
 }
@@ -246,6 +246,11 @@ header {
 .nav-scroll .navbar-nav .nav-language{
   color: #000 !important;
 }
+
+.navbar .navbar-nav .nav-language.nav-color {
+  color: #272727!important;
+}
+
 
 @media (min-width: 992px) {
   .navbar-expand-lg .navbar-nav .nav-language {

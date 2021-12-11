@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarContent, SidebarHeader } from 'react-pro-sidebar';
 import './sidebar.scss';
 import { Link, useLocation, useHistory } from 'react-router-dom';
-import SidebarLogo from 'assets/images/logo-blue.png';
+import SidebarLogo from 'assets/images/logo.svg';
 import {useDispatch, useSelector} from "react-redux";
 import Actions from 'redux/actions';
 import { toast } from "react-toastify";

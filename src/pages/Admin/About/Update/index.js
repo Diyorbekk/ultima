@@ -123,8 +123,8 @@ const Create = () => {
                                         cb: {
                                             success: () => {
                                                 toast.success("O'zgartirildi");
-                                                history.push("/about");
                                                 resetForm();
+                                                history.push("/about");
                                             },
                                             error: () => {
                                                 toast.error("Xatolik yuz berdi");
