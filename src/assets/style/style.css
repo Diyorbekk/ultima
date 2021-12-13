@@ -18914,6 +18914,7 @@ body {
   .navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 0.5rem;
     padding-left: 0.5rem;
+    font-size: 12px;
   }
 
   .navbar-expand-lg > .container,

@@ -47,12 +47,7 @@ const Navigation = () => {
                     <p className="nav-link mb-0" data-scroll-nav="3">{t("nav.Objects")}</p>
                 </li>
                 <li className="nav-item">
-                    <p className="nav-link mb-0" data-scroll-nav="4">{t("nav.Videos")}</p></li>
-                <li className="nav-item">
                     <p className="nav-link mb-0" data-scroll-nav="5">{t("nav.Certificate")}</p>
-                </li>
-                <li className="nav-item">
-                    <p className="nav-link mb-0" data-scroll-nav="5">{t("nav.Partners")}</p>
                 </li>
                 <li className="nav-item">
                     <p className="nav-link mb-0" data-scroll-nav="5">{t("nav.Contacts")}</p>
@@ -104,16 +99,8 @@ const Navigation = () => {
                                  scroll={el => scrollWidthOffset(el)}>{t("nav.Objects")}</NavHashLink>
                 </li>
                 <li className="nav-item">
-                    <NavHashLink className="nav-link nav-color" data-active="/news" to="/#blog"
-                                 scroll={el => scrollWidthOffset(el)}>{t("nav.Videos")}</NavHashLink>
-                </li>
-                <li className="nav-item">
                     <NavHashLink className="nav-link nav-color" data-active="/contact" to="/#contact"
                                  scroll={el => scrollWidthOffset(el)}>{t("nav.Certificate")}</NavHashLink>
-                </li>
-                <li className="nav-item">
-                    <NavHashLink className="nav-link nav-color" data-active="/contact" to="/#contact"
-                                 scroll={el => scrollWidthOffset(el)}>{t("nav.Partners")}</NavHashLink>
                 </li>
                 <li className="nav-item">
                     <NavHashLink className="nav-link nav-color" data-active="/contact" to="/#contact"

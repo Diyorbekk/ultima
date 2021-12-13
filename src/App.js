@@ -54,10 +54,10 @@ const App = ({i18n}) => {
             const scriptTag4 = document.querySelector('#jquery-url');
             const scriptTag5 = document.querySelector('#scroll_it');
             const scriptTag6 = document.querySelector('#stellar');
-            const scriptTag7 = document.querySelector('#custom');
             const scriptTag8 = document.querySelector('#pace');
             const scriptTag9 = document.querySelector('#migrate');
             const scriptTag10 = document.querySelector('#magnific');
+            const scriptTag7 = document.querySelector('#custom');
             if (scriptTag1) {
                 scriptTag1.remove();
             }
@@ -94,16 +94,16 @@ const App = ({i18n}) => {
     return (
         <>
             <Helmet>
-                <script id="jquery-url" async defer src={JQUERY} />
+                <script id="jquery-url" async src={JQUERY} />
                 <script id="pace" async defer data-pace-options='{ "ajax": false }' src={PACE} />
-                <script id={'magnific'} async defer src={MAGNIFIC} />
-                <script id={'bootstrap'} async defer src={BOOTSTRAP}  />
-                <script id={'popper'} async defer src={POPPER}  />
-                <script id={'way-points'} async defer src={WAY_POINTS} />
-                <script id={'scroll_it'} async defer src={SCROLL_IT} />
-                <script id={'stellar'} async defer src={STELLAR} />
-                <script id={'migrate'} async defer src={MIGRATE} />
-                <script id={'custom'} async defer src={CUSTOM} />
+                <script id={'magnific'} async src={MAGNIFIC} />
+                <script id={'bootstrap'} async src={BOOTSTRAP}  />
+                <script id={'popper'} async src={POPPER}  />
+                <script id={'way-points'} async src={WAY_POINTS} />
+                <script id={'scroll_it'} async src={SCROLL_IT} />
+                <script id={'stellar'} async src={STELLAR} />
+                <script id={'migrate'} async src={MIGRATE} />
+                <script id={'custom'} async src={CUSTOM} />
             </Helmet>
             <Routes/>
             <ToastContainer autoClose={3000}/>

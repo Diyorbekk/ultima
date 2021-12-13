@@ -1188,7 +1188,7 @@ hr {
     background-position: center top;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
     .slider .item,
     .slider-fade .item {
         background-size: cover;
@@ -2686,6 +2686,7 @@ button.mfp-arrow {
     z-index: 99999999999999;
     display: block;
     position: absolute;
+    overflow: hidden;
     top: 0;
     right: 100%;
     height: 100%;
@@ -2697,10 +2698,12 @@ button.mfp-arrow {
     -webkit-transition: all 0.5s;
     -o-transition: all 0.5s;
     transition: all 0.5s;
+    overflow: hidden;
 }
 
 .pace.pace-active::after {
     content: "";
+    overflow: hidden;
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -2736,6 +2739,7 @@ button.mfp-arrow {
 #preloader:before {
     content: '';
     position: fixed;
+    overflow: hidden;
     left: 0;
     height: 50%;
     width: 100%;
