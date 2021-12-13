@@ -35,7 +35,7 @@ const Navigation = () => {
         nav = (
             <React.Fragment>
                 <li className="nav-item">
-                    <p className="nav-link mb-0" data-scroll-nav="0">{t("nav.Home")}</p>
+                    <p className="nav-link active mb-0" data-scroll-nav="0">{t("nav.Home")}</p>
                 </li>
                 <li className="nav-item">
                     <p className="nav-link mb-0" data-scroll-nav="1">{t("nav.About")}</p>

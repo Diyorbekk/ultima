@@ -48,16 +48,16 @@ const App = ({i18n}) => {
     useEffect(() => {
 
         return ()=>{
-            const scriptTag1 = document.querySelector('#bootstrap');
-            const scriptTag2 = document.querySelector('#popper');
-            const scriptTag3 = document.querySelector('#way-points');
-            const scriptTag4 = document.querySelector('#jquery-url');
-            const scriptTag5 = document.querySelector('#scroll_it');
+            const scriptTag1 = document.querySelector('#jquery-url');
+            const scriptTag2 = document.querySelector('#pace');
+            const scriptTag3 = document.querySelector('#scroll_it');
+            const scriptTag4 = document.querySelector('#bootstrap');
+            const scriptTag5 = document.querySelector('#way-points');
             const scriptTag6 = document.querySelector('#stellar');
-            const scriptTag8 = document.querySelector('#pace');
+            const scriptTag7 = document.querySelector('#magnific');
+            const scriptTag8 = document.querySelector('#popper');
             const scriptTag9 = document.querySelector('#migrate');
-            const scriptTag10 = document.querySelector('#magnific');
-            const scriptTag7 = document.querySelector('#custom');
+            const scriptTag10 = document.querySelector('#custom');
             if (scriptTag1) {
                 scriptTag1.remove();
             }
@@ -95,12 +95,12 @@ const App = ({i18n}) => {
         <>
             <Helmet>
                 <script id="jquery-url" async src={JQUERY} />
-                <script id="pace" async defer data-pace-options='{ "ajax": false }' src={PACE} />
-                <script id={'magnific'} async src={MAGNIFIC} />
-                <script id={'bootstrap'} async src={BOOTSTRAP}  />
-                <script id={'popper'} async src={POPPER}  />
-                <script id={'way-points'} async src={WAY_POINTS} />
+                <script id="pace" async data-pace-options='{ "ajax": false }' src={PACE} />
                 <script id={'scroll_it'} async src={SCROLL_IT} />
+                <script id={'magnific'} async src={MAGNIFIC} />
+                <script id={'bootstrap'} async src={BOOTSTRAP} />
+                <script id={'popper'} async src={POPPER} />
+                <script id={'way-points'} async src={WAY_POINTS} />
                 <script id={'stellar'} async src={STELLAR} />
                 <script id={'migrate'} async src={MIGRATE} />
                 <script id={'custom'} async src={CUSTOM} />

@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import ToTop from "./components/ToTop";
 
 const Client = lazy(() => import('./pages/Clients'));
+const About = lazy(() => import('./pages/Admin/About/AboutView'));
 const ClientCategoryView = lazy(() => import('./pages/Admin/Category/CategoryView'));
 
 //Login page
@@ -31,9 +32,13 @@ const AdminCategory = lazy(() => import('./pages/Admin/Category'))
 const AdminCategoryAdd = lazy(() => import('./pages/Admin/Category/CategoryMain'))
 const AdminCategoryUpdate = lazy(() => import('./pages/Admin/Category/Update'))
 const AdminCategoryView = lazy(() => import('./pages/Admin/Category/CategoryView'))
+/* Objects */
+const AdminObjects = lazy(() => import('./pages/Admin/Objects'))
+const AdminObjectsAdd = lazy(() => import('./pages/Admin/Objects/ObjectsMain'))
 
 const publicRoutes = [
     {path: '/', exact: true, component: <Client/>},
+    {path: '/about', exact: true, component: <About/>},
     {path: '/category/view/:id', exact: true, component: <ClientCategoryView/>},
 ];
 
@@ -51,6 +56,8 @@ const adminRoutes = [
     {path: '/category/category-add', exact: true, component: <AdminCategoryAdd/>},
     {path: '/category/update/:id', exact: true, component: <AdminCategoryUpdate/>},
     {path: '/category/view/:id', exact: true, component: <AdminCategoryView/>},
+    {path: '/objects', exact: true, component: <AdminObjects/>},
+    {path: '/objects/objects-add', exact: true, component: <AdminObjectsAdd/>},
 ];
 
 
@@ -60,59 +67,66 @@ const Routes = () => {
     return (
         <Router>
             <Offline>
-                <div className={"flex-fill flex-grow-1"}>
+                <div className={"flex-fill flex-grow-1 position-relative"}>
                     <Suspense fallback={<GearSpin isSpinning style={{height: '100vh', width: "100%"}}/>}>
                         <>
                             <Switch>
                                 <Route exact path="/login" component={Login}/>
-                                {
-                                    publicRoutes.map((route, key) => (
-                                        <Route
-                                            key={key}
-                                            path={route.path}
-                                            exact={route.exact}
-                                            render={() => {
-                                                return (
-                                                    <>
-                                                        <ToTop/>
-                                                        <Navigation/>
-                                                        {route.component}
-                                                        <Footer/>
-                                                    </>
-                                                )
-                                            }}
-                                        />
-                                    ))
-                                }
 
                                 {
-                                    adminRoutes.map((route, key) => (
-                                        <Route
-                                            key={key}
-                                            path={route.path}
-                                            exact={route.exact}
-                                            render={() => {
-                                                if (auth.isAuthenticated) {
-                                                    return (
-                                                        <>
-                                                            < Header/>
-                                                            <div className={"flex-fill flex-grow-1 d-flex"}>
-                                                                <Sidebar/>
-                                                                <div
-                                                                    className={"wrapper-block pt-100 pb-50 w-100 overflowY-auto vh-100 px-lg-4 px-3"}>
-                                                                    <div className={"device-wrapper"}>
-                                                                        {route.component}
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </>
-                                                    )
-                                                } else {
-                                                    return <Redirect to={'/'}/>
-                                                }
-                                            }}
-                                        />
-                                    ))
+                                    auth.isAuthenticated
+                                        ? <>
+                                            {
+                                                adminRoutes.map((route, key) => (
+                                                    <Route
+                                                        key={key}
+                                                        path={route.path}
+                                                        exact={route.exact}
+                                                        render={() => {
+                                                            if (auth.isAuthenticated) {
+                                                                return (
+                                                                    <>
+                                                                        < Header/>
+                                                                        <div className={"flex-fill flex-grow-1 d-flex"}>
+                                                                            <Sidebar/>
+                                                                            <div
+                                                                                className={"wrapper-block pt-100 pb-50 w-100 overflowY-auto vh-100 px-lg-4 px-3"}>
+                                                                                <div className={"device-wrapper"}>
+                                                                                    {route.component}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </>
+                                                                )
+                                                            } else {
+                                                                return <Redirect to={'/'}/>
+                                                            }
+                                                        }}
+                                                    />
+                                                ))
+                                            }
+                                        </>
+                                        : <>
+                                            {
+                                                publicRoutes.map((route, key) => (
+                                                    <Route
+                                                        key={key}
+                                                        path={route.path}
+                                                        exact={route.exact}
+                                                        render={() => {
+                                                            return (
+                                                                <>
+                                                                    <ToTop/>
+                                                                    <Navigation/>
+                                                                    {route.component}
+                                                                    <Footer/>
+                                                                </>
+                                                            )
+                                                        }}
+                                                    />
+                                                ))
+                                            }
+                                        </>
                                 }
 
 

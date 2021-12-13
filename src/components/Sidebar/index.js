@@ -41,6 +41,12 @@ const Sidebar = () =>  {
         path: ['/category', "/category/about-add"],
         icon: 'font-size-20 fal fa-images mr-2',
       },
+      {
+        id: 4,
+        title: t('side_bar_admin.Objects'),
+        path: ['/objects', "/objects/objects-add"],
+        icon: 'font-size-20 fal fa-building mr-2',
+      },
     ],
   };
 
