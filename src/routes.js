@@ -72,10 +72,29 @@ const Routes = () => {
                         <>
                             <Switch>
                                 <Route exact path="/login" component={Login}/>
-
                                 {
-                                    auth.isAuthenticated
-                                        ? <>
+                                    publicRoutes.map((route, key) => (
+                                        <Route
+                                            key={key}
+                                            path={route.path}
+                                            exact={route.exact}
+                                            render={() => {
+                                                return (
+                                                    <>
+                                                        <ToTop/>
+                                                        <Navigation/>
+                                                        {route.component}
+                                                        <Footer/>
+                                                    </>
+                                                )
+                                            }}
+                                        />
+                                    ))
+                                }
+                                {
+                                    !auth.isAuthenticated
+                                        ? null
+                                        : <>
                                             {
                                                 adminRoutes.map((route, key) => (
                                                     <Route
@@ -101,27 +120,6 @@ const Routes = () => {
                                                             } else {
                                                                 return <Redirect to={'/'}/>
                                                             }
-                                                        }}
-                                                    />
-                                                ))
-                                            }
-                                        </>
-                                        : <>
-                                            {
-                                                publicRoutes.map((route, key) => (
-                                                    <Route
-                                                        key={key}
-                                                        path={route.path}
-                                                        exact={route.exact}
-                                                        render={() => {
-                                                            return (
-                                                                <>
-                                                                    <ToTop/>
-                                                                    <Navigation/>
-                                                                    {route.component}
-                                                                    <Footer/>
-                                                                </>
-                                                            )
                                                         }}
                                                     />
                                                 ))

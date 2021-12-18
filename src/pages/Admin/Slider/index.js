@@ -70,7 +70,7 @@ const AdminHome = () => {
                                                 isFetched && data !== null
                                                     ? Object.keys(data).length
                                                     ? Object.keys(data).map((key, index) => (
-                                                        <div className="col-md-3" key={index}>
+                                                        <div className="col-md-3 col-lg-4" key={index}>
                                                             <NavLink to={`/admin/slider/view/${key}`}
                                                                      className="card text-decoration-none text-body d-flex">
                                                                 <img src={get(data[key], "photo")}
@@ -119,7 +119,7 @@ const AdminHome = () => {
                             >
                             </Spin>
                     }
-                    <div className="col-md-3">
+                    <div className="col-md-3 col-lg-4">
                         <NavLink to={`/admin/slider-add`}
                                  className="border rounded d-flex align-items-center justify-content-center">
                             <img src={add} style={{width: 150}} alt="icon-add"/>

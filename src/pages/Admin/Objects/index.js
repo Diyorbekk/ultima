@@ -68,7 +68,7 @@ const Objects = () => {
                                             isFetched && data !== null
                                                 ? Object.keys(data).length
                                                 ? Object.keys(data).map((key, index) => (
-                                                    <div className="col-md-3" key={index}>
+                                                    <div className="col-md-3 col-lg-4" key={index}>
                                                         <NavLink to={`/objects/view/${key}`}
                                                                  className="card text-decoration-none text-body">
                                                             <img src={get(data[key], "photo")}
@@ -117,7 +117,7 @@ const Objects = () => {
                         >
                         </Spin>
                 }
-                <div className="col-md-3">
+                <div className="col-md-3 col-lg-4">
                     <NavLink to={`/objects/objects-add`}
                              className="border rounded d-flex align-items-center justify-content-center">
                         <img src={add} style={{width: 150}} alt="icon-add"/>

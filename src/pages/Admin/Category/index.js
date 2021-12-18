@@ -66,13 +66,11 @@ const Category = () => {
                                             isSpinning={!isFetched}
                                             style={{display: "contents"}}
                                         >
-
-
                                             {
                                                 isFetched && data !== null
                                                     ? Object.keys(data).length
                                                     ? Object.keys(data).map((key, index) => (
-                                                        <div className="col-md-3" key={index}>
+                                                        <div className="col-md-3 col-lg-4" key={index}>
                                                             {
                                                                     get(data[key], `category_data`).map((res, i) => (
                                                                         <React.Fragment key={i}>
@@ -144,7 +142,7 @@ const Category = () => {
                             >
                             </Spin>
                     }
-                    <div className="col-md-3">
+                    <div className="col-md-3 col-lg-4">
                         <NavLink to={`/category/category-add`}
                                  className="border rounded d-flex align-items-center justify-content-center">
                             <img src={add} style={{width: 150}} alt="icon-add"/>
