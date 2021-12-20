@@ -124,7 +124,7 @@ const Create = () => {
                                             success: () => {
                                                 toast.success("O'zgartirildi");
                                                 resetForm();
-                                                history.push("/about");
+                                                history.push("/admin/about");
                                             },
                                             error: () => {
                                                 toast.error("Xatolik yuz berdi");

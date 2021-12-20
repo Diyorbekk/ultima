@@ -32,19 +32,19 @@ const Sidebar = () =>  {
       {
         id: 2,
         title: t('side_bar_admin.About'),
-        path: ['/about', "/about/about-add"],
+        path: ['/admin/about', "/admin/about/about-add"],
         icon: 'font-size-20 fal fa-address-card mr-2',
       },
       {
         id: 3,
         title: t('side_bar_admin.Categories'),
-        path: ['/category', "/category/about-add"],
+        path: ['/admin/category', "/admin/category/category-add"],
         icon: 'font-size-20 fal fa-images mr-2',
       },
       {
         id: 4,
         title: t('side_bar_admin.Objects'),
-        path: ['/objects', "/objects/objects-add"],
+        path: ['/admin/objects', "/admin/objects/objects-add"],
         icon: 'font-size-20 fal fa-building mr-2',
       },
     ],

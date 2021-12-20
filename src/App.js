@@ -18,35 +18,24 @@ import Actions from 'redux/actions';
 import Helmet from 'react-helmet';
 import dayjs from 'dayjs';
 
-const PACE = "https://diyorbekk.github.io/js/pace.js";
-const MAGNIFIC = 'https://diyorbekk.github.io/js/jquery.magnific-popup.js';
-const JQUERY = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js";
-const BOOTSTRAP= 'https://diyorbekk.github.io/js/bootstrap.min.js';
-const POPPER = 'https://diyorbekk.github.io/js/popper.min.js';
-const WAY_POINTS = 'https://diyorbekk.github.io/js/jquery.waypoints.min.js';
-const SCROLL_IT = 'https://diyorbekk.github.io/js/scrollIt.min.js';
-const STELLAR = 'https://diyorbekk.github.io/js/jquery.stellar.min.js';
-const MIGRATE = 'https://diyorbekk.github.io/js/jquery-migrate-3.0.0.min.js';
-const CUSTOM = 'https://diyorbekk.github.io/js/custom.js';
+const JQUERY = "/js/jquery.js";
+const PACE = "/js/pace.js";
+const SCROLL_IT = '/js/scrollit.js';
+const MAGNIFIC = '/js/magnific-popup.js';
+const BOOTSTRAP= '/js/bootstrap.js';
+const POPPER = '/js/popper.js';
+const WAY_POINTS = '/js/waypoints.js';
+const STELLAR = '/js/stellar.js';
+const MIGRATE = '/js/migrate.js';
+const CUSTOM = '/js/custom.js';
 
 
 const App = ({i18n}) => {
 
     const dispatch = useDispatch();
     const {system: {language}} = useSelector(state => state);
-    useEffect(() => {
-        if (!storage.get('language')) {
-            dispatch(Actions.CHANGE_LANG.success('uz'));
-            dayjs.locale('uz');
-        }
-    }, [dispatch]);
-    useEffect(() => {
-        i18n.changeLanguage(language).then(r => r);
-        dayjs.locale(language);
-    }, [i18n, language]);
 
     useEffect(() => {
-
         return ()=>{
             const scriptTag1 = document.querySelector('#jquery-url');
             const scriptTag2 = document.querySelector('#pace');
@@ -89,21 +78,32 @@ const App = ({i18n}) => {
                 scriptTag10.remove();
             }
         };
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [PACE]);
 
+    useEffect(() => {
+        if (!storage.get('language')) {
+            dispatch(Actions.CHANGE_LANG.success('uz'));
+            dayjs.locale('uz');
+        }
+    }, [dispatch]);
+    useEffect(() => {
+        i18n.changeLanguage(language).then(r => r);
+        dayjs.locale(language);
+    }, [i18n, language]);
     return (
         <>
             <Helmet>
-                <script id="jquery-url" async src={JQUERY} />
-                <script id="pace" async data-pace-options='{ "ajax": false }' src={PACE} />
-                <script id={'scroll_it'} async src={SCROLL_IT} />
-                <script id={'magnific'} async src={MAGNIFIC} />
-                <script id={'bootstrap'} async src={BOOTSTRAP} />
-                <script id={'popper'} async src={POPPER} />
-                <script id={'way-points'} async src={WAY_POINTS} />
-                <script id={'stellar'} async src={STELLAR} />
-                <script id={'migrate'} async src={MIGRATE} />
-                <script id={'custom'} async src={CUSTOM} />
+                <script type="text/javascript" id={"jquery-url"} async src={JQUERY} />
+                <script type="text/javascript" id={"pace"} async src={PACE} />
+                <script type="text/javascript" id={'scroll_it'} async src={SCROLL_IT} />
+                <script type="text/javascript" id={'magnific'} async src={MAGNIFIC} />
+                <script type="text/javascript" id={'bootstrap'} async src={BOOTSTRAP} />
+                <script type="text/javascript" id={'popper'} async src={POPPER} />
+                <script type="text/javascript" id={'way-points'} async src={WAY_POINTS} />
+                <script type="text/javascript" id={'stellar'} async src={STELLAR} />
+                <script type="text/javascript" id={'migrate'} async src={MIGRATE} />
+                <script type="text/javascript" id={'custom'} async src={CUSTOM} />
             </Helmet>
             <Routes/>
             <ToastContainer autoClose={3000}/>

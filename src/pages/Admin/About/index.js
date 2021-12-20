@@ -68,7 +68,7 @@ const About = () => {
                                                     ? Object.keys(data).length
                                                     ? Object.keys(data).map((key, index) => (
                                                         <div className="col-md-3 col-lg-4" key={index}>
-                                                            <NavLink to={`/about/view/${key}`}
+                                                            <NavLink to={`/admin/about/view/${key}`}
                                                                      className="card text-decoration-none text-body">
                                                                 <img src={get(data[key], "photo")}
                                                                      className="card-img-top"
@@ -103,13 +103,13 @@ const About = () => {
                                                     : Object.keys(data).length === 2
                                                     ? null
                                                         : <div className="col-md-3 col-lg-4">
-                                                            <NavLink to={`/about/about-add`}
+                                                            <NavLink to={`/admin/about/about-add`}
                                                                      className="border rounded d-flex align-items-center justify-content-center">
                                                                 <img src={add} style={{width: 150}} alt="icon-add"/>
                                                             </NavLink>
                                                         </div>
                                                     : <div className="col-md-3 col-lg-4">
-                                                        <NavLink to={`/about/about-add`}
+                                                        <NavLink to={`/admin/about/about-add`}
                                                                  className="border rounded d-flex align-items-center justify-content-center">
                                                             <img src={add} style={{width: 150}} alt="icon-add"/>
                                                         </NavLink>

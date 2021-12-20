@@ -736,7 +736,7 @@ input[type="checkbox"] {
 /* ======= Navbar style ======= */
 .navbar {
     width: 100%;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.85);
     z-index: 99;
     height: 90px;
     position: fixed;
@@ -1067,9 +1067,9 @@ input[type="checkbox"] {
 
 
 /* ======= Header style ======= */
-#home {
+/*#home {
     margin-top: 90px;
-}
+}*/
 
 .header_main {
     min-height: 100vh;

@@ -74,7 +74,7 @@ const Category = () => {
                                                             {
                                                                     get(data[key], `category_data`).map((res, i) => (
                                                                         <React.Fragment key={i}>
-                                                                            <NavLink to={`/category/view/${key}`}
+                                                                            <NavLink to={`/admin/category/view/${key}`}
                                                                                      className="card text-decoration-none text-body d-flex">
                                                                                 <img src={get(res, "photo")}
                                                                                      className="card-img-top" alt="category"/>
@@ -115,7 +115,7 @@ const Category = () => {
                                                                                 </button>
                                                                                 <NavLink
                                                                                     className="btn btn-warning text-white w-100"
-                                                                                    to={`/category/update/${key}`}
+                                                                                    to={`/admin/category/update/${key}`}
                                                                                 >
                                                                                     {t("create.update-btn")}<i
                                                                                     className="fas fa-edit font-size-22 ml-2"/>
@@ -143,7 +143,7 @@ const Category = () => {
                             </Spin>
                     }
                     <div className="col-md-3 col-lg-4">
-                        <NavLink to={`/category/category-add`}
+                        <NavLink to={`/admin/category/category-add`}
                                  className="border rounded d-flex align-items-center justify-content-center">
                             <img src={add} style={{width: 150}} alt="icon-add"/>
                         </NavLink>
